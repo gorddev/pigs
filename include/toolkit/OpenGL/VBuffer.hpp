@@ -2,9 +2,9 @@
 
 #include <ostream>
 
-#include "Vertex.hpp"
+#include "PVertex.hpp"
 #include "toolkit/apidef.h"
-#include "toolkit/errors/pig_log.hpp"
+#include <core/errors/pig_log.hpp>
 
 // Created by Gordie Novak on 2/17/26.
 
@@ -14,13 +14,7 @@
 
 typedef uint32_t GLuint; //< typedef so we can use w/o includes.
 
-namespace pig {
-    class Renderer;
-    class ShapeFactory;
-    class EngineCore;
-}
-
-namespace pig {
+namespace pg {
 
     /// A vertex buffer is an internal engine object
     /// that stores internal vertex and rendering information
@@ -62,8 +56,8 @@ namespace pig {
          * @param shaderLoc The location in the shader you want to upload the data to. Must be divisible by 4.
          * @return An optional GLuint: exists if creation was successful
          * @warning shaderLoc must be divisible by four. */
-        [[nodiscard]] static err::Errcode genMatrixVBO(VBuffer& buffer, size_t shaderLoc);
-        [[nodiscard]] static err::Errcode genColorVBO(VBuffer& buffer, size_t shaderLoc);
+        [[nodiscard]] static Errcode genMatrixVBO(VBuffer& buffer, size_t shaderLoc);
+        [[nodiscard]] static Errcode genColorVBO(VBuffer& buffer, size_t shaderLoc);
     };
 
     #include "VBuffer.inl"

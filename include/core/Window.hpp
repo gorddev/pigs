@@ -15,10 +15,10 @@
 // new window management system so you can easily adjust window properties
 
 
-namespace pig {
+namespace pg {
 
 
-    /** It's a window that displays stuff! Create a window with @code pig::Window::make(...)@endcode
+    /** It's a window that displays stuff! Create a window with @code pg::Window::make(...)@endcode
      *
      * There's many handy-dandy functions you have access to.
      */

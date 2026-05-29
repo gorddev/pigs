@@ -9,7 +9,7 @@
 
 #include "../apidef.h"
 
-namespace pig {
+namespace pg {
     /** Is_Vertex requires that a vertex struct have an @code static void attribute()@endcode
      * function that properly sets up the attribute pointers for OpenGL shaders */
     template<typename V>
@@ -48,16 +48,19 @@ namespace pig {
             ); glEnableVertexAttribArray(2);
         }
 
+        constexpr Vertex(float x={}, float y={}, float z={}, float u={}, float v={}, float nx={}, float ny={}, float nz={})
+            : x(x), y(y), z(z), u(u), v(v), nx(nx), ny(ny), nz(nz) {}
+
         // —————————————————————————— //
         static constexpr size_t num_attributes = 3;
         static_assert(Is_Vertex<Self>);
     };
 
 
-    /** (Shader Vertex): Barebones vertex with three position attributes (x,y,z) and nothing else. Intended to be used
+    /** (Point Vertex): Barebones vertex with three position attributes (x,y,z) and nothing else. Intended to be used
      * with fragment shaders for various purposes. */
-    struct SVertex {
-        using Self = SVertex;
+    struct PVertex {
+        using Self = PVertex;
 
         float x, y, z; //< position data
 

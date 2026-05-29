@@ -17,9 +17,9 @@ int main() {
     const float* vertex_data = new float[num_vertices*3];
 
     gan::Window window = gan::Window::makeGL("My window", {400, 300}, gan::WindowResizable | gan::WindowFloatOnTop);
-    gan::files::set_assets_folder("assets_old");
+    gan::files::set_assets_folder("assets");
 
-    auto program = create_GL_program("assets_old/popcorn.vert", "assets_old/popcorn.frag");
+    auto program = create_GL_program("assets/popcorn.vert", "assets/popcorn.frag");
 
     auto vao = create_GL_vertex_array(vertex_data, num_vertices);
 

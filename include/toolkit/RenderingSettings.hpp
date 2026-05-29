@@ -8,7 +8,7 @@
 
 #include <SDL3/SDL_render.h>
 
-namespace pig {
+namespace pg {
 
 
     /// Flags for window creation
@@ -37,14 +37,14 @@ namespace pig {
     inline void operator~(WindowProperty& w) noexcept {
         w = static_cast<WindowProperty>(~static_cast<uint64_t>(w));
     }
-    inline WindowProperty operator|(WindowProperty w1, const uint64_t w2) noexcept {
+    inline WindowProperty operator|(const WindowProperty w1, const uint64_t w2) noexcept {
         return static_cast<WindowProperty>(static_cast<uint64_t>(w1) | w2);
     }
 
     /// How textures appear in the engine
     enum ScaleMode : uint_fast32_t {
-        GAN_PIXEL = GL_NEAREST,
-        GAN_LINEAR = GL_LINEAR,
+        PG_PIXEL = GL_NEAREST,
+        PG_LINEAR = GL_LINEAR,
         MIPMAP_PIXEL = GL_NEAREST_MIPMAP_NEAREST,
         MIPMAP_LINEAR = GL_LINEAR_MIPMAP_LINEAR,
     };

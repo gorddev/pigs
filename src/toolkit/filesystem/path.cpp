@@ -1,16 +1,16 @@
 #include "toolkit/filesystem/path.hpp"
 
-namespace pig {
+namespace pg {
     std::filesystem::path internal_path_obj::working_directory = std::filesystem::path("@null");
-    std::filesystem::path internal_path_obj::assets_folder = std::filesystem::path("..") / "assets_old";
+    std::filesystem::path internal_path_obj::assets_folder = std::filesystem::path("..") / "assets";
 
     void path::verifyInputString(const char p[]) const {
         const auto len = strlen(p);
         for (size_t i = 0; i < len; i++) {
             if (p[i] == '/' || p[i] == '\\') {
-                err::panic("path::operator/()",
+                panic("path::operator/()",
                     "Cannot initialize path \"", (filepath / p).c_str(), "\" with '\\' or '/'. Please use the notation:\n"
-                    "\tpig::dir(\"directory\")/\"subdir\"/\"file.ext\"");
+                    "\tpg::dir(\"directory\")/\"subdir\"/\"file.ext\"");
             }
         }
     }
@@ -51,12 +51,12 @@ namespace pig {
     bool path::is_regular_file() const {
         const path expanded = expand();
         if (!std::filesystem::exists(expanded.c_str())) {
-            GAN_WriteLog("path::exists()",
+            PIG_WriteLog("path::exists()",
                 "The file ", expanded.c_str(), " doesn't exist.");
             return false;
         }
         if (!std::filesystem::is_regular_file(expanded.c_str())) {
-            GAN_WriteLog("path::exits()",
+            PIG_WriteLog("path::exits()",
                 "The file ", expanded.c_str(), " is not a regular file.");
             return false;
         }
@@ -64,6 +64,6 @@ namespace pig {
     }
 
     path path::subdir(const char p[]) const {
-        return pig::path(filepath / p);
+        return pg::path(filepath / p);
     }
 }

@@ -2,7 +2,7 @@
 
 #include "path.hpp"
 
-namespace pig {
+namespace pg {
 
     class Engine;
 

@@ -7,7 +7,7 @@
 typedef uint32_t GLuint;
 typedef uint32_t GLenum;
 
-namespace pig {
+namespace pg {
 
     class path; ///< Forward declaration for the path class.
 

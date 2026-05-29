@@ -5,7 +5,7 @@
  * Purpose: 
  * Holds all the vector types */
 
-namespace pig {
+namespace pg {
 
     // -------------------------- //
     struct vec2 {
@@ -110,7 +110,7 @@ namespace pig {
 
 // implementation
 
-namespace pig {
+namespace pg {
     // vec2
 
 constexpr vec2 vec2::unit() const {

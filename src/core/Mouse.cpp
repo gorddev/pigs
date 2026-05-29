@@ -1,6 +1,6 @@
 #include "Mouse.hpp"
 
-namespace pig {
+namespace pg {
     Mouse::Mouse() { updateWithSDL(); }
 
     void Mouse::updateWithSDL() {

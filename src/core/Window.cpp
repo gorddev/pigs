@@ -3,16 +3,16 @@
 #include "Window.hpp"
 
 #include "../../include/toolkit/apidef.h"
-#include "toolkit/errors/pig_err.hpp"
+#include "core/errors/pig_err.hpp"
 
-#ifdef GAN_DEBUG
+#ifdef PIG_DEBUG
 #include <iostream>
 #include <ostream>
 #endif
 
 // created by gordie feb 16th. implementation for window
 
-using namespace pig;
+using namespace pg;
 
 Window::Window(SDL_Window* win, WindowProperty flags, const SDL_WindowID id, const SDL_GLContext gl, const vec2 dim)
     : id(id), sdl_window(win), flags(flags), gl_ctx(gl), dimensions(dim)
@@ -56,15 +56,15 @@ Window Window::make(const char windowName[], const dim2 dim, WindowProperty flag
     SDL_Window* sdl_window = SDL_CreateWindow(windowName, dim.w, dim.h, flags);
 
     if (!sdl_window) {
-        err::panic("Window::Window()", "Failed to make window with error: ",  SDL_GetError());
+        panic("Window::Window()", "Failed to make window with error: ",  SDL_GetError());
     }
 
     SDL_GLContext gl_context = SDL_GL_CreateContext(sdl_window);
 
     if (!gl_context)
-        err::panic("Window::Window()", "Failed to make OpenGL context with error: ",  SDL_GetError());
+        panic("Window::Window()", "Failed to make OpenGL context with error: ",  SDL_GetError());
 
-    GAN_gladLoadGL((GLADloadproc)SDL_GL_GetProcAddress);
+    PIG_gladLoadGL((GLADloadproc)SDL_GL_GetProcAddress);
 
     printf("OpenGL Context Initialized: %s\n", reinterpret_cast<const char*>(glGetString(GL_RENDERER)));
 
@@ -183,7 +183,7 @@ void Window::setKeyboardGrab(const bool b) {
 
 void Window::setIcon(const char pathToImage[]) {
     SDL_Surface* surf; //= IMG_Load(pathToImage);
-    #ifdef GAN_DEBUG
+    #ifdef PIG_DEBUG
     if (!surf)
         std::cout << "Failed to load image: " << pathToImage << ".\n" << SDL_GetError() << std::endl;
     #endif
@@ -209,7 +209,7 @@ void Window::setOpacity(const float opacity) const {
     if (flags & WindowTransparent)
         SDL_SetWindowOpacity(sdl_window, opacity);
     else
-        err::panic("pig::Window::setOpacity()",
+        panic("pg::Window::setOpacity()",
             "Cannot set window opacity, as flag 'WindowTransparent'"
             "was not enabled at launch.");
 }

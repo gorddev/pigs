@@ -1,14 +1,13 @@
 #pragma once
 
 #include "../toolkit/apidef.h"
+#include "toolkit/types/vec.hpp"
 
 // made by gordie novak feb 25th
 
-// used to store all the input data: read only except for the InputReceiver.
+extern "C" SDL_AppResult SDL_AppEvent(void*, SDL_Event*);
 
-
-
-namespace pig {
+namespace pg {
     class Engine;
 
     enum MouseButtonType {
@@ -113,16 +112,15 @@ namespace pig {
             return mouseFlags & MOUSE_X2;
         }
 
-        // Make sure the mouse state can't be accidentally copied.
-        Mouse operator=(Mouse&&)              = delete;   ///< Nope. You can't do that.
-        Mouse operator=(const Mouse& other)   = delete;   ///< Nope. You can't do that.
-        Mouse(Mouse&& other)                  = delete;   ///< Nope. You can't do that.
-        Mouse(const Mouse& other)             = delete;   ///< Nope. You can't do that.
+
 
 
         /* ---------------------------------------------------- */
         // Static update functions.
 
+    private:
+        friend class Engine;
+        friend SDL_AppResult (::SDL_AppEvent(void*, SDL_Event*));
         /// Gets the current keyboard and mouse state from SDL and updates the given InputState object with it.
         /// @param mState The @code InputState@endcode object to update with SDL information.
         void updateWithSDL();
@@ -135,6 +133,12 @@ namespace pig {
         void onSDLMouseWheel(SDL_Event& e);
 
         void clearMouseWheel();
+
+        // Make sure the mouse state can't be accidentally copied.
+        Mouse& operator=(Mouse&&)              = default;
+        Mouse& operator=(const Mouse& other)   = default;
+        Mouse(Mouse&& other)                   = default;
+        Mouse(const Mouse& other)              = default;
     };
 
 }

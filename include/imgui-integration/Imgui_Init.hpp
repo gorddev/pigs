@@ -6,7 +6,7 @@
 #include "backends/imgui_impl_sdl3.h"
 #include "../core/Window.hpp"
 
-namespace pig::imgui {
+namespace pg::imgui {
     [[nodiscard]] inline ImGuiContext* create_context(const Window& window) {
         auto context = ImGui::CreateContext();
         ImGui_ImplOpenGL3_Init(glVersionHeader);

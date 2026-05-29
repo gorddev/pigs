@@ -16,11 +16,11 @@
  * Purpose:
  */
 
-namespace pig {
+namespace pg {
     class InfoPanel {
     protected:
         ImGuiContext* imgui_context;
-        pig::Window window;
+        pg::Window window;
         dim2 sizeReq;
 
     public:

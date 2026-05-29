@@ -1,6 +1,6 @@
 #include "toolkit/filesystem/filesystem.hpp"
 
-namespace pig {
+namespace pg {
     void files::init_filesystem() {
         internal_path_obj::working_directory = std::filesystem::current_path();
     }
@@ -18,7 +18,7 @@ namespace pig {
         if (!std::filesystem::is_directory(internal_path_obj::assets_folder)) {
             std::filesystem::path newPath = internal_path_obj::working_directory.parent_path() / p;
             if (!std::filesystem::exists(newPath) && !std::filesystem::is_directory(internal_path_obj::assets_folder)) {
-                err::panic("core::filesystem::set_assets_folder()", "Unable to locate assets_old folder ", internal_path_obj::assets_folder.c_str());
+                panic("core::filesystem::set_assets_folder()", "Unable to locate assets folder ", internal_path_obj::assets_folder.c_str());
             } else {
                 internal_path_obj::assets_folder = newPath;
             }
@@ -37,11 +37,11 @@ namespace pig {
         const auto len = strlen(p);
         for (size_t i = 0; i < len; i++) {
             if (p[i] == '/' || p[i] == '\\') {
-                err::panic("core::dir(const char path[])"
+                panic("core::dir(const char path[])"
                     , "Cannot initialize a path with '\\' or '/'. Please use the notation:\n"
-                       "\tpig::dir(\"directory\")/\"subdir\"/\"file.ext\"");
+                       "\tpg::dir(\"directory\")/\"subdir\"/\"file.ext\"");
             }
         }
-        return pig::path(std::filesystem::path(p));
+        return pg::path(std::filesystem::path(p));
     }
 }

@@ -58,11 +58,11 @@
 
     template<typename V>
         requires(Is_Vertex<V>)
-    err::Errcode VBuffer<V>::genMatrixVBO(VBuffer<V>& buffer, size_t shaderLoc) {
+    Errcode VBuffer<V>::genMatrixVBO(VBuffer<V>& buffer, size_t shaderLoc) {
         if (shaderLoc % 4 != 0 || shaderLoc < V::num_attributes) {
-            GAN_WriteLog("VertexBuffer::genMatrixVBO()", "shaderLoc parameter is not valid, as it must"
+            PIG_WriteLog("VertexBuffer::genMatrixVBO()", "shaderLoc parameter is not valid, as it must"
                                 "be divisible by 4 and less than", V::num_attributes, ". Provided value: ", shaderLoc);
-            return err::ERR;
+            return ERR;
         }
         glBindVertexArray(buffer.vao);
         glGenBuffers(1, &buffer.mbo); //< generate buffer into our new vbo
@@ -77,20 +77,20 @@
 
             glVertexAttribDivisor(shaderLoc + i, 1);
         }
-        return err::OK;
+        return OK;
     }
 
     // ************************************************ //
     
     template<typename V>
         requires(Is_Vertex<V>)
-    err::Errcode VBuffer<V>::genColorVBO(VBuffer& buffer, size_t shaderLoc) {
+    Errcode VBuffer<V>::genColorVBO(VBuffer& buffer, size_t shaderLoc) {
         if (shaderLoc <= 2) {
-            GAN_WriteLog("VertexBuffer::genColorVBO()",
+            PIG_WriteLog("VertexBuffer::genColorVBO()",
                 "shaderLoc parameter is not valid, as it"
                 "overrides the pos, uv, and norm shader locations"
                 "which range from 1-2. Provided shaderLoc: ", shaderLoc);
-            return err::ERR;
+            return ERR;
         }
         glBindVertexArray(buffer.vao);
         glGenBuffers(1, &buffer.cbo);
@@ -100,7 +100,7 @@
             GL_FLOAT, GL_FALSE, sizeof(float)*4,
             nullptr);
         glEnableVertexAttribArray(shaderLoc);
-        return err::OK;
+        return OK;
     }
 
     template<typename V>

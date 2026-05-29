@@ -1,17 +1,17 @@
 #include <core/Clock.hpp>
 
-namespace pig {
-    Clock::Clock(uint64_t time, uint64_t dt, uint64_t frame) :
-        m_time(time), m_dt(dt), m_frame(frame) {}
+namespace pg {
+    Clock::Clock() :
+        m_time(0), m_dt(0), m_frame(0) {}
 
-    Clock Clock::create() {
-        return {SDL_GetTicks(), 0, 0ull};
-    }
-
-    void Clock::tick(Clock& timer) {
+    void Clock::tick() {
         const uint64_t newTime = SDL_GetTicks();
-        timer.m_dt = newTime - timer.m_time;
-        timer.m_time = newTime;
-        ++timer.m_frame;
+        m_dt = newTime - m_time;
+        m_time = newTime;
+        ++m_frame;
+
+        time = m_time;
+        frame = m_frame;
+        dt = m_dt;
     }
 }

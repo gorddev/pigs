@@ -2,9 +2,9 @@
 
 #include <filesystem>
 
-#include "../errors/pig_err.hpp"
+#include <core/errors/pig_err.hpp>
 
-namespace pig {
+namespace pg {
 
     class internal_path_obj {
         /// Working directory of the filesystem

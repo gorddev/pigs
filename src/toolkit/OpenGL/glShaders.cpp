@@ -2,14 +2,14 @@
 // gordie lib
 #include <toolkit/filesystem/path.hpp>
 #include <toolkit/apidef.h>
-#include <toolkit/errors/pig_log.hpp>
+#include <core/errors/pig_log.hpp>
 
 // standard lib
 #include <vector>
 #include <fstream>
 #include <sstream>
 
-using namespace pig;
+using namespace pg;
 
 /// Returns false if the shader is not compiled.
 static bool verifyProgramIntegrity(GLuint program) {
@@ -23,7 +23,7 @@ static bool verifyProgramIntegrity(GLuint program) {
         std::vector<char> log(len);
 
         glGetProgramInfoLog(program, len, nullptr, log.data());
-        GAN_WriteLog("verifyProgramIntegrity()", "Shader program linkage failed with error:\n", log.data());
+        PIG_WriteLog("verifyProgramIntegrity()", "Shader program linkage failed with error:\n", log.data());
         return false;
     }
     return true;
@@ -40,7 +40,7 @@ static bool verifyShaderIntegrity(GLuint shader) {
         ::std::vector<char> log(logLen);
         glGetShaderInfoLog(shader, logLen, nullptr, log.data());
 
-        GAN_WriteLog("verifyShaderIntegrity()", "Shader compilation failed with error:\n", log.data());
+        PIG_WriteLog("verifyShaderIntegrity()", "Shader compilation failed with error:\n", log.data());
         return false;
     }
     return true;
@@ -68,13 +68,13 @@ static void replaceGLVersionString(std::string& shaderStr) {
 std::optional<GLuint> gl::compileShaderFromPath(GLenum shaderType, path pathToShader) {
 
     if (!pathToShader.is_regular_file()) {
-        GAN_AppendLog("gl::compileShaderFromPath()", "Path provided does not exist.");
+        PIG_AppendLog("gl::compileShaderFromPath()", "Path provided does not exist.");
         return std::nullopt;
     }
     // load the file
     std::ifstream file(pathToShader.expand().c_str());
     if (!file) {
-        GAN_WriteLog("gl::compileShaderFromPath()","Failed to open shader file \'", pathToShader.expand().c_str(), "\'");
+        PIG_WriteLog("gl::compileShaderFromPath()","Failed to open shader file \'", pathToShader.expand().c_str(), "\'");
         return std::nullopt;
     }
     std::stringstream ss;
@@ -90,7 +90,7 @@ std::optional<GLuint> gl::compileShaderFromPath(GLenum shaderType, path pathToSh
 
     auto opt = compileShader(data, shaderType, length);
     if (!opt)
-        GAN_AppendLog("gl::compileShaderFromPath()", "Shader verification failed.");
+        PIG_AppendLog("gl::compileShaderFromPath()", "Shader verification failed.");
     return opt;
 }
 
@@ -99,10 +99,10 @@ std::optional<GLuint> gl::makeShaderProgram(
     std::initializer_list<path> fragmentShaders)
 {
     if (vertexShaders.size() <= 0) {
-        GAN_WriteLog("gl::makeShaderProgram()", "Shader error: must have a minimum of one vertex shader.");
+        PIG_WriteLog("gl::makeShaderProgram()", "Shader error: must have a minimum of one vertex shader.");
         return std::nullopt;
     } else if (fragmentShaders.size() <= 0) {
-        GAN_WriteLog("gl::makeShaderProgram()", "Shader error: must have a minimum of one fragment shader.");
+        PIG_WriteLog("gl::makeShaderProgram()", "Shader error: must have a minimum of one fragment shader.");
         return std::nullopt;
     }
 
@@ -114,7 +114,7 @@ std::optional<GLuint> gl::makeShaderProgram(
     for (auto& p: vertexShaders) {
         auto result = compileShaderFromPath(GL_VERTEX_SHADER, p);
         if (!result) {
-            GAN_AppendLog("gl::makeShaderProgram()", "Bad result from gl::compileShaderFromPath() for shader ", "\'", p.c_str(), "\'");
+            PIG_AppendLog("gl::makeShaderProgram()", "Bad result from gl::compileShaderFromPath() for shader ", "\'", p.c_str(), "\'");
             return std::nullopt;
         }
         // if successful attach the shader.
@@ -124,7 +124,7 @@ std::optional<GLuint> gl::makeShaderProgram(
     for (auto& p: fragmentShaders) {
         auto result = compileShaderFromPath(GL_FRAGMENT_SHADER, p);
         if (!result) {
-            GAN_RawAppendLog() << "Failed to compile fragment shader: " << p << ".";
+            PIG_RawAppendLog() << "Failed to compile fragment shader: " << p << ".";
             return std::nullopt;
         }
         // if successful attach the fragment shader
@@ -136,7 +136,7 @@ std::optional<GLuint> gl::makeShaderProgram(
     glLinkProgram(program);
     // if our program did not compile, return nullopt.
     if (!verifyProgramIntegrity(program)) {
-        GAN_AppendLog("gl::makeShaderProgram()", "Failed to link program ", (int) program, ". Check error log.");
+        PIG_AppendLog("gl::makeShaderProgram()", "Failed to link program ", (int) program, ". Check error log.");
         return std::nullopt;
     }
     // after linking, we delete all of our shaders.
@@ -153,10 +153,10 @@ std::optional<GLuint> gl::rawMakeShaderProgram(
 {
 
     if (vertexShaders.size() <= 0) {
-        GAN_WriteLog("gl::CreateShaderProgram: Must have a minimum of one vertex shader.");
+        PIG_WriteLog("gl::CreateShaderProgram: Must have a minimum of one vertex shader.");
         return std::nullopt;
     } else if (fragmentShaders.size() <= 0) {
-        GAN_WriteLog("gl::CreateShaderProgram: Must have a minimum of one fragment shader.");
+        PIG_WriteLog("gl::CreateShaderProgram: Must have a minimum of one fragment shader.");
         return std::nullopt;
     }
 
@@ -168,7 +168,7 @@ std::optional<GLuint> gl::rawMakeShaderProgram(
     for (auto& sc: vertexShaders) {
         auto result = compileShader(sc.first, GL_VERTEX_SHADER, sc.second);
         if (!result) {
-            GAN_RawAppendLog() << "Failed to compile static vertex shader: " << sc.first << ".";
+            PIG_RawAppendLog() << "Failed to compile static vertex shader: " << sc.first << ".";
             return std::nullopt;
         }
         // if successful attach the shader.
@@ -178,7 +178,7 @@ std::optional<GLuint> gl::rawMakeShaderProgram(
     for (auto& sc: fragmentShaders) {
         auto result = compileShader(sc.first, GL_FRAGMENT_SHADER, sc.second);
         if (!result) {
-            GAN_RawAppendLog() << "Failed to compile static fragment shader: " << sc.first << ".";
+            PIG_RawAppendLog() << "Failed to compile static fragment shader: " << sc.first << ".";
             return std::nullopt;
         }
         // if successful attach the fragment shader

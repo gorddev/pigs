@@ -1,6 +1,6 @@
 #pragma once
 
-namespace pig {
+namespace pg {
     // vec2
 
     constexpr vec2 vec2::unit() const {

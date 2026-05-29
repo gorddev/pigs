@@ -1,11 +1,14 @@
 #pragma once
 
+// fstring is a templated local-storage string with fixed capacity.
+
 #include <concepts>
 #include <cstring>
+#include <string_view>
 
 // str_subview definition below
 
-namespace pig {
+namespace pg {
 
     /** Allows you to compare small portions of a str_view **/
     class str_subview {
@@ -53,7 +56,7 @@ namespace pig {
 
 // str_view definition below
 
-namespace pig {
+namespace pg {
     /** Allows for memoryless setting of the precision parameter of an fstring **/
     template<uint8_t C>
     struct precision {
@@ -163,10 +166,10 @@ namespace pig {
 
 /** @brief Throws an exception for str_view errors */
 static void fstr_view_throw_err(const char err[]) {
-    //throw std::runtime_error(err);
+    throw std::runtime_error(err);
 }
 
-namespace pig {
+namespace pg {
 
 // **************************************
 // Construction
@@ -340,7 +343,7 @@ inline str_view& str_view::operator<<(const void* ptr) {
 
 // fstring declaration below
 
-namespace pig {
+namespace pg {
 
     /** @brief @code fstring@endcode is a custom string class that is much faster for comparison than std::string, but cannot be resized.
      * Create an fstring with @code fstring<size> varName@endcode.
@@ -432,6 +435,8 @@ namespace pig {
         fstring<C>& operator<<(const char (&str)[N]);
         /// Adds a constant character of unknown length into the current fstring
         fstring<C>& operator<<(const char* str);
+        /// Adds a string view into the current fstring
+        fstring<C>& operator<<(std::string_view);
 
         // <><><> Specific types <><><>
         /// Adds an integer into the current fstring
@@ -472,7 +477,7 @@ namespace pig {
 // fstring implementation below
 
 static inline void fstring_throw_err(const char err[]) {
-    // throw std::runtime_error(err);
+    throw std::runtime_error(err);
 }
 
 // ****************************** -------------------
@@ -481,7 +486,7 @@ static inline void fstring_throw_err(const char err[]) {
 
 template<uint32_t C>
 template<uint16_t N>
-constexpr pig::fstring<C>::fstring(const char (&str)[N]) { // NOLINT(*-explicit-constructor, *-pro-type-member-init)
+constexpr pg::fstring<C>::fstring(const char (&str)[N]) { // NOLINT(*-explicit-constructor, *-pro-type-member-init)
     // Gets the length of our string
     len = std::min<uint32_t>(N - 1, C - 1);
     // Allocate memory for array
@@ -493,7 +498,7 @@ constexpr pig::fstring<C>::fstring(const char (&str)[N]) { // NOLINT(*-explicit-
 }
 /// Constructor for constant character without length info
 template<uint32_t C>
-constexpr pig::fstring<C>::fstring(const char* str) { // NOLINT(*-pro-type-member-init)
+constexpr pg::fstring<C>::fstring(const char* str) { // NOLINT(*-pro-type-member-init)
     // If there's nothing there
     if (!str) {
         len = 0;
@@ -512,7 +517,7 @@ constexpr pig::fstring<C>::fstring(const char* str) { // NOLINT(*-pro-type-membe
 
 /// Constructor for a singular character
 template<uint32_t C>
-constexpr pig::fstring<C>::fstring(char c) { // NOLINT(*-pro-type-member-init)
+constexpr pg::fstring<C>::fstring(char c) { // NOLINT(*-pro-type-member-init)
     // Length equals one
     len = 1;
     // Assign the first value
@@ -523,7 +528,7 @@ constexpr pig::fstring<C>::fstring(char c) { // NOLINT(*-pro-type-member-init)
 }
 /// Nothing in the constructor
 template<uint32_t C>
-constexpr pig::fstring<C>::fstring() { // NOLINT(*-pro-type-member-init)
+constexpr pg::fstring<C>::fstring() { // NOLINT(*-pro-type-member-init)
     len = 0;
     arr[0] = '\0';
     // Assign our precision identifier
@@ -535,58 +540,58 @@ constexpr pig::fstring<C>::fstring() { // NOLINT(*-pro-type-member-init)
 // ****************************** -------------------
 
 template<uint32_t C>
-constexpr uint32_t pig::fstring<C>::length() const {
+constexpr uint32_t pg::fstring<C>::length() const {
     return len;
 }
 
 template<uint32_t C>
-constexpr uint32_t pig::fstring<C>::capacity() {
+constexpr uint32_t pg::fstring<C>::capacity() {
     return C;
 }
 
 template<uint32_t C>
-const char* pig::fstring<C>::c_str()  {
+const char* pg::fstring<C>::c_str()  {
     arr[len] = '\0';
     return &arr[0];
 }
 
 template<uint32_t C>
-char* pig::fstring<C>::data() {
+char* pg::fstring<C>::data() {
     arr[len] = '\0';
     return &arr[0];
 }
 
 template<uint32_t C>
-void pig::fstring<C>::clear() {
+void pg::fstring<C>::clear() {
     len = 0;
 }
 
 template<uint32_t C>
-pig::fstring<C> pig::fstring<C>::pop() {
+pg::fstring<C> pg::fstring<C>::pop() {
     fstring<C> ret = *this;
     clear();
     return ret;
 }
 
 template<uint32_t C>
-pig::str_view pig::fstring<C>::wrap() {
+pg::str_view pg::fstring<C>::wrap() {
     return str_view(arr, len, C);
 }
 
 template<uint32_t C>
 template<size_t N>
     requires(N <= C)
-void pig::fstring<C>::resize() {
+void pg::fstring<C>::resize() {
     len = N - 1;
 }
 
 template<uint32_t C>
-bool pig::fstring<C>::empty() const {
+bool pg::fstring<C>::empty() const {
     return len == 0;
 }
 
 template<uint32_t C> template <uint32_t N>
-void pig::fstring<C>::emplace(uint32_t index, const char (&str)[N])
+void pg::fstring<C>::emplace(uint32_t index, const char (&str)[N])
     requires(index + N - 1 <= C)
 {
     memcpy(arr + index, str, N - 1);
@@ -597,7 +602,7 @@ void pig::fstring<C>::emplace(uint32_t index, const char (&str)[N])
 }
 
 template<uint32_t C>
-void pig::fstring<C>::emplace(uint32_t index, const char* str, uint32_t count)
+void pg::fstring<C>::emplace(uint32_t index, const char* str, uint32_t count)
     requires(index + count <= C)
 {
     if (!str) return; // nothing to copy
@@ -611,7 +616,7 @@ void pig::fstring<C>::emplace(uint32_t index, const char* str, uint32_t count)
 
 template<uint32_t C>
 template<uint32_t N>
-constexpr pig::fstring<N> pig::fstring<C>::substr(uint32_t index) const {
+constexpr pg::fstring<N> pg::fstring<C>::substr(uint32_t index) const {
     if (N > C - index)
         fstring_throw_err("fstring<C>::substr, access out of bounds memory.");
     return fstring<N>(arr + index, std::min(len - index, N));
@@ -622,7 +627,7 @@ constexpr pig::fstring<N> pig::fstring<C>::substr(uint32_t index) const {
 // ****************************** -------------------
 
 template<uint32_t C>
-constexpr char& pig::fstring<C>::operator[](uint32_t index) {
+constexpr char& pg::fstring<C>::operator[](uint32_t index) {
     if (index >= len)
         fstring_throw_err("fstring<C>::operator[], access out of bounds memory.");
     return arr[index];
@@ -634,13 +639,13 @@ constexpr char& pig::fstring<C>::operator[](uint32_t index) {
 
 template<uint32_t C>
 template<uint32_t N>
-bool pig::fstring<C>::operator==(const char(&str)[N]) const {
+bool pg::fstring<C>::operator==(const char(&str)[N]) const {
     if (len != N - 1) return false;
     return std::memcmp(arr, str, len) == 0;
 }
 
 template<uint32_t C>
-bool pig::fstring<C>::operator==(const char *str) const{
+bool pg::fstring<C>::operator==(const char *str) const{
     for (uint_fast32_t i = 0; i < len; i++) {
         if (arr[i] != str[i]) return false;
     }
@@ -649,7 +654,7 @@ bool pig::fstring<C>::operator==(const char *str) const{
 
 template<uint32_t C>
 template<uint32_t N>
-pig::fstring<C>& pig::fstring<C>::operator<<(fstring<N> &other) {
+pg::fstring<C>& pg::fstring<C>::operator<<(fstring<N> &other) {
     const uint32_t bytes = std::min<uint32_t>( other.length(), C - len);
     memcpy(arr + len, other.c_str(), bytes);
     len += bytes;
@@ -658,7 +663,7 @@ pig::fstring<C>& pig::fstring<C>::operator<<(fstring<N> &other) {
 
 template<uint32_t C>
 template<uint32_t N>
-pig::fstring<C> & pig::fstring<C>::operator<<(const char(&str)[N]) {
+pg::fstring<C> & pg::fstring<C>::operator<<(const char(&str)[N]) {
     const uint32_t bytes = std::min<uint32_t>( N, C - len);
     memcpy(arr + len, str, bytes);
     len += bytes;
@@ -666,7 +671,7 @@ pig::fstring<C> & pig::fstring<C>::operator<<(const char(&str)[N]) {
 }
 
 template<uint32_t C>
-pig::fstring<C> & pig::fstring<C>::operator<<(const char *str) {
+pg::fstring<C> & pg::fstring<C>::operator<<(const char *str) {
     if (!str) return (*this) << "null";
     const uint32_t bytes = std::min<uint32_t>( strlen(str), C - len);
     memcpy(arr + len, str, bytes);
@@ -675,7 +680,15 @@ pig::fstring<C> & pig::fstring<C>::operator<<(const char *str) {
 }
 
 template<uint32_t C>
-pig::fstring<C>& pig::fstring<C>::operator<<(const int num) {
+pg::fstring<C>& pg::fstring<C>::operator<<(std::string_view v) {
+    const uint32_t bytes = std::min<uint32_t>(v.length(), C - len);
+    std::memcpy(arr + len, v.data(), bytes);
+    len += bytes;
+    return *this;
+}
+
+template<uint32_t C>
+pg::fstring<C>& pg::fstring<C>::operator<<(const int num) {
     auto* start = arr + len;
     auto res = std::to_chars(start, arr + C, num);
     len += res.ptr - start;
@@ -684,13 +697,13 @@ pig::fstring<C>& pig::fstring<C>::operator<<(const int num) {
 
 template<uint32_t C>
 template<uint8_t P>
-pig::fstring<C> & pig::fstring<C>::operator<<(precision<P>) {
+pg::fstring<C> & pg::fstring<C>::operator<<(precision<P>) {
     arr[C + 1] = P;
     return *this;
 }
 
 template<uint32_t C>
-pig::fstring<C> & pig::fstring<C>::operator<<(float num) {
+pg::fstring<C> & pg::fstring<C>::operator<<(float num) {
     auto* start = arr + len;
     auto* end = arr + C;
     auto res = std::to_chars(start, end, num, std::chars_format::fixed, prec);
@@ -702,14 +715,14 @@ pig::fstring<C> & pig::fstring<C>::operator<<(float num) {
 }
 
 template<uint32_t C>
-pig::fstring<C> & pig::fstring<C>::operator<<(char c) {
+pg::fstring<C> & pg::fstring<C>::operator<<(char c) {
     if (len != C - 1)
         arr[len++] = c;
     return *this;
 }
 
 template<uint32_t C>
-pig::fstring<C>& pig::fstring<C>::operator<<(const void* ptr) {
+pg::fstring<C>& pg::fstring<C>::operator<<(const void* ptr) {
     if (!ptr) return (*this) << "nullptr";
     auto addr = reinterpret_cast<uintptr_t>(ptr);
     *this << "0x";
@@ -721,11 +734,11 @@ pig::fstring<C>& pig::fstring<C>::operator<<(const void* ptr) {
 }
 
 template<uint32_t C>
-pig::fstring<C> & pig::fstring<C>::operator<<(bool b) {
+pg::fstring<C> & pg::fstring<C>::operator<<(bool b) {
     return *this << (b ? "true" : "false");
 }
 
-inline pig::str_view& pig::str_view::operator<<(const pig::str_view &other) {
+inline pg::str_view& pg::str_view::operator<<(const pg::str_view &other) {
     const uint32_t bytes = std::min<uint32_t>( other.length(), cap - len);
     std::memmove(data + len, other.c_str(), bytes);
     len += bytes;
@@ -733,8 +746,8 @@ inline pig::str_view& pig::str_view::operator<<(const pig::str_view &other) {
 }
 
 template<uint32_t N, uint32_t C>
-pig::fstring<N+C> operator+(const pig::fstring<N> self, const pig::fstring<C>& other) {
-    pig::fstring<N + C> ret;
+pg::fstring<N+C> operator+(const pg::fstring<N> self, const pg::fstring<C>& other) {
+    pg::fstring<N + C> ret;
     ret << self << other;
     return ret;
 }

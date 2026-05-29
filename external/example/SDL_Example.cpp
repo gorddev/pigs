@@ -19,7 +19,7 @@ ImGuiContext* imgui;
 SDL_AppResult SDL_AppInit(void** userdata, int argc, char* argv[]) {
     int x, y;
 
-    gan::files::set_assets_folder("assets_old");
+    gan::files::set_assets_folder("assets");
 
     winGL.setPosition({560, 300});
     const float vertices[] = {

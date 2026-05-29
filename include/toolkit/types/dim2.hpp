@@ -3,7 +3,7 @@
 
 /* Created by Gordie Novak on 3/15/26. */
 
-namespace pig {
+namespace pg {
     struct dim2 {
         union {
             struct { uint32_t x, y; };
