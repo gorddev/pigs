@@ -1,4 +1,5 @@
 #include "core/rendering/OpenGL/Texture.hpp"
+#include "errors/error-structs/OpenGL/GenericGLError.hpp"
 
 #include <expected>
 
@@ -28,7 +29,12 @@ Texture& Texture::operator=(Texture&& o) noexcept {
 Texture::Texture(const GLuint gl_id, const GLuint target, const uint32_t w, const uint32_t h)
     : gl_id(gl_id), target(target), w(w), h(h) {}
 
-expected<Texture> Texture::make2D(
+expected<
+    Texture,
+    err::GenericOpenGLError,
+    err::GLTexParameterInitFailure,
+    err::GLTexGenerationFailure>
+  Texture::make2D(
     const void* pixels,
     const uint32_t w,
     const uint32_t h,
@@ -39,9 +45,7 @@ expected<Texture> Texture::make2D(
 {
     GLenum error;
     if ((error = glGetError()) != GL_NO_ERROR) {
-        return PG_UErr(
-            "Texture before initialization failed.\nRefer to GL Error Code: " ,
-            static_cast<int>(error) , "\n");
+        return PG_UErrNew(err::GenericOpenGLError, .gl_error = error);
     }
     // first create a texture id.
     GLuint gl_id;
@@ -60,9 +64,7 @@ expected<Texture> Texture::make2D(
     }
 
     if ((error = glGetError()) != GL_NO_ERROR) {
-        return PG_UErr(
-            "Texture parameter initialization failed.\nRefer to GL Error Code: " ,
-            static_cast<int>(error) , "\n");
+        return PG_UErrNew(err::GLTexParameterInitFailure, .gl_error = error);
     }
 
     // then we generate the underlying texture
@@ -79,20 +81,22 @@ expected<Texture> Texture::make2D(
 
 
     if ((error = glGetError()) != GL_NO_ERROR) {
-        return PG_UErr(
-            "Texture gener22ation failed.\nRefer to GL Error Code: ", static_cast<int>(error), "\n");
+        return PG_UErrNew(err::GLTexGenerationFailure, .gl_error = error);
     }
     glGenerateMipmap(GL_TEXTURE_2D);
 
     if ((error = glGetError()) != GL_NO_ERROR) {
-        return PG_UErr(
-            "Texture generation failed.\nRefer to GL Error Code: ", static_cast<int>(error), "\n");
+      return PG_UErrNew(err::GLTexGenerationFailure, .gl_error = error);
     }
     // now we can return our texture id.
     return Texture{gl_id, GL_TEXTURE_2D, w, h};
 }
 
-expected<Texture> Texture::make_packed(const void* pixels, u32 w, u32 h, ScaleMode scaleMode,
+expected<
+  Texture,
+  err::GLTexParameterInitFailure,
+  err::GLTexGenerationFailure>
+Texture::make_packed(const void* pixels, u32 w, u32 h, ScaleMode scaleMode,
     GLuint target, [[maybe_unused]]GLuint packSize, GLuint texFormat, GLuint sizeofPixel) noexcept
 {
     // first create a texture id.
@@ -112,8 +116,7 @@ expected<Texture> Texture::make_packed(const void* pixels, u32 w, u32 h, ScaleMo
 
     GLenum error;
     if ((error = glGetError()) != GL_NO_ERROR) {
-        return PG_UErr("Texture parameter initialization failed.\nRefer to GL Error Code: " ,
-            static_cast<int>(error) , "\n");
+        return PG_UErrNew(err::GLTexParameterInitFailure, .gl_error = error);
     }
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -132,8 +135,7 @@ expected<Texture> Texture::make_packed(const void* pixels, u32 w, u32 h, ScaleMo
     glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 
     if ((error = glGetError()) != GL_NO_ERROR) {
-        return PG_UErr("Texture generation failed.\nRefer to GL Error Code: " ,
-            static_cast<int>(error) , "\n");
+        return PG_UErrNew(err::GLTexGenerationFailure, .gl_error = error);
     }
     // now we can return our texture id.
     return Texture{gl_id, target, w, h};

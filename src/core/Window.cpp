@@ -3,12 +3,7 @@
 #include "Window.hpp"
 
 #include "../../include/toolkit/apidef.h"
-#include "core/errors/pig_err.hpp"
-
-#ifdef PIG_DEBUG
-#include <iostream>
-#include <ostream>
-#endif
+#include <core/errors/unwrap.hpp>
 
 // created by gordie feb 16th. implementation for window
 
@@ -24,7 +19,7 @@ Window::Window(SDL_Window* win, WindowProperty flags, const SDL_WindowID id, con
     dpiScale = SDL_GetWindowDisplayScale(sdl_window);
 }
 
-void Window::updateWindowDimensions() {
+Window& Window::updateWindowDimensions() {
     int w, h;
     SDL_GetWindowSize(sdl_window, &w, &h);
     dimensions = vec2{static_cast<float>(w), static_cast<float>(h)};
@@ -33,6 +28,7 @@ void Window::updateWindowDimensions() {
     pixelDimensions = {static_cast<float>(pw), static_cast<float>(ph)};
     dpiScale = SDL_GetWindowDisplayScale(sdl_window);
     glViewport(0, 0, pw, ph);
+    return *this;
 }
 
 Window Window::make(const char windowName[], const dim2 dim, WindowProperty flags)
@@ -56,17 +52,17 @@ Window Window::make(const char windowName[], const dim2 dim, WindowProperty flag
     SDL_Window* sdl_window = SDL_CreateWindow(windowName, dim.w, dim.h, flags);
 
     if (!sdl_window) {
-        panic("Window::Window()", "Failed to make window with error: ",  SDL_GetError());
+        PG_Panic("Failed to make window with error: ",  SDL_GetError());
     }
 
     SDL_GLContext gl_context = SDL_GL_CreateContext(sdl_window);
 
     if (!gl_context)
-        panic("Window::Window()", "Failed to make OpenGL context with error: ",  SDL_GetError());
+        PG_Panic("Failed to make OpenGL context with error: ",  SDL_GetError());
 
     PIG_gladLoadGL((GLADloadproc)SDL_GL_GetProcAddress);
 
-    printf("OpenGL Context Initialized: %s\n", reinterpret_cast<const char*>(glGetString(GL_RENDERER)));
+    printf("\x1B[90mOpenGL Context Initialized: %s%s\n", reinterpret_cast<const char*>(glGetString(GL_RENDERER)), "\x1B[0m");
 
     SDL_ClearError();
 
@@ -100,10 +96,11 @@ Window& Window::operator=(Window&& o) noexcept {
     return *this;
 }
 
-Window::Window(Window&& o) noexcept : id(o.id), sdl_window(o.sdl_window), flags(o.flags), gl_ctx(o.gl_ctx), dimensions(o.dimensions) {
+Window::Window(Window&& o) noexcept : id(o.id), sdl_window(o.sdl_window), flags(o.flags), gl_ctx(o.gl_ctx),
+                                      dimensions(o.dimensions), pixelDimensions(), dpiScale(1) {
     o.sdl_window = nullptr;
-    o.flags = WindowFlagNone;
-    o.gl_ctx = nullptr;
+    o.flags      = WindowFlagNone;
+    o.gl_ctx     = nullptr;
     o.dimensions = {};
 }
 
@@ -111,6 +108,10 @@ Window::~Window() {
     SDL_DestroyWindow(sdl_window);
     sdl_window = nullptr;
     flags = WindowDestroyed;
+}
+
+vec2 Window::normalizeToWindow(const vec2& pos) const {
+    return  {pos.x/dimensions.x, pos.y/dimensions.y};
 }
 
 Window::operator SDL_Window*() const noexcept {
@@ -121,97 +122,114 @@ float Window::getDPIScale() const {
     return dpiScale;
 }
 
-void Window::setDimensions(const dim2 dim) {
+Window& Window::setDimensions(const dim2 dim) {
     SDL_SetWindowSize(sdl_window, dim.w, dim.h);
     updateWindowDimensions();
+    return *this;
 }
 
 
-void Window::setWidth(uint32_t width) {
+Window& Window::setWidth(uint32_t width) {
     SDL_SetWindowSize(sdl_window, width, dimensions.h);
     updateWindowDimensions();
+    return *this;
 }
 
-void Window::setHeight(uint32_t height) {
+Window& Window::setHeight(uint32_t height) {
     SDL_SetWindowSize(sdl_window, dimensions.w, height);
     updateWindowDimensions();
+    return *this;
 }
 
-void Window::setPosition(const vec2 pos) const {
+Window& Window::setPosition(const vec2 pos) {
     SDL_SetWindowPosition(sdl_window, pos.x, pos.y);
+    return *this;
 }
 
-void Window::setFullscreen()  {
+Window& Window::setFullscreen()  {
     flags |= WindowFullscreen;
     SDL_SetWindowFullscreen(sdl_window, true);
+    return *this;
 }
 
-void Window::setWindowed() {
+Window& Window::setWindowed() {
     flags &= ~WindowFullscreen;
     SDL_SetWindowFullscreen(sdl_window, false);
+    return *this;
 }
 
-void Window::setResizable(const bool b) {
+Window& Window::setResizable(bool b) {
     if (b)  flags |= WindowResizable;
     else    flags &= ~WindowResizable;
     SDL_SetWindowResizable(sdl_window, b);
+    return *this;
 }
 
-void Window::setFloatOnTop(const bool b) {
+Window& Window::setFloatOnTop(const bool b) {
     if (b)  flags |= WindowFloatOnTop;
     else    flags &= ~WindowFloatOnTop;
     SDL_SetWindowAlwaysOnTop(sdl_window, b);
+    return *this;
 }
 
-void Window::setMouseGrab(const bool b) {
+Window& Window::setMouseGrab(const bool b) {
     if (b)  flags |= WindowMouseConfined;
     else    flags &= ~WindowMouseConfined;
     SDL_SetWindowMouseGrab(sdl_window, b);
+    return *this;
 }
 
-void Window::setMouseLocking(const bool hidden) {
+Window& Window::setMouseLocking(const bool hidden) {
     if (hidden)  flags |= WindowMouseHidden;
     else        flags &= ~WindowMouseHidden;
     SDL_SetWindowRelativeMouseMode(sdl_window, hidden);
+    return *this;
 }
 
-void Window::setKeyboardGrab(const bool b) {
+Window& Window::setKeyboardGrab(const bool b) {
     if (b)  flags |= WindowKeyboardGrabbed;
     else    flags &= ~WindowKeyboardGrabbed;
     SDL_SetWindowMouseGrab(sdl_window, b);
+    return *this;
 }
 
-void Window::setIcon(const char pathToImage[]) {
+Window& Window::setIcon([[maybe_unused]] const char pathToImage[]) {
+    /*
     SDL_Surface* surf; //= IMG_Load(pathToImage);
     #ifdef PIG_DEBUG
     if (!surf)
         std::cout << "Failed to load image: " << pathToImage << ".\n" << SDL_GetError() << std::endl;
     #endif
-    SDL_SetWindowIcon(sdl_window, surf);
-    SDL_DestroySurface(surf);
+    //SDL_SetWindowIcon(sdl_window, surf);
+    SDL_DestroySurface(surf);*/
+    return *this;
 }
 
-void Window::setName(const char name[]) const {
+Window& Window::setName(const char name[]) {
     SDL_SetWindowTitle(sdl_window, name);
+    return *this;
 }
 
-void Window::hide() {
+Window& Window::hide() {
     flags |= WindowHidden;
     SDL_HideWindow(sdl_window);
+    return *this;
 }
 
-void Window::show() {
+Window& Window::show() {
     flags &= ~WindowHidden;
     SDL_ShowWindow(sdl_window);
+    return *this;
 }
 
-void Window::setOpacity(const float opacity) const {
+Window& Window::setOpacity(const float opacity) {
     if (flags & WindowTransparent)
         SDL_SetWindowOpacity(sdl_window, opacity);
     else
-        panic("pg::Window::setOpacity()",
+        PG_Panic(
             "Cannot set window opacity, as flag 'WindowTransparent'"
             "was not enabled at launch.");
+    return *this;
 }
 
 bool Window::isFullscreen() const {
@@ -298,17 +316,18 @@ dim2 Window::getWindowPixelSize() const noexcept {
     return {x, y};
 }
 
-float Window::getPixelWidth() const noexcept {
-    return pixelDimensions.w;
+uint16_t Window::getPixelWidth() const noexcept {
+    return static_cast<uint16_t>(pixelDimensions.w);
 }
 
-float Window::getPixelHeight() const noexcept {
-    return pixelDimensions.h;
+uint16_t Window::getPixelHeight() const noexcept {
+    return static_cast<uint16_t>(pixelDimensions.h);
 }
 
-void Window::setGLClearColor(vec4 c) const  {
+Window& Window::setGLClearColor(vec4 c) {
     SDL_GL_MakeCurrent(sdl_window, gl_ctx);
     glClearColor(c.r, c.g, c.b, c.a);
+    return *this;
 }
 
 void Window::on_SDLWindowEvent(SDL_Event& e) noexcept {
@@ -316,20 +335,3 @@ void Window::on_SDLWindowEvent(SDL_Event& e) noexcept {
         updateWindowDimensions();
     }
 }
-
-vec2 Window::normalizeToClipSpace(const vec2& pos) const {
-    vec2 ret = {pos.x, dimensions.h - pos.y};
-    ret.x /= dimensions.w;
-    ret.y /= dimensions.h;
-    ret.x -= 0.5f;
-    ret.y -= 0.5f;
-    ret.x *= 2;
-    ret.y *= 2;
-    return ret;
-}
-
-vec2 Window::normalizeToWindow(const vec2& pos) const {
-    return {pos.x/dimensions.w, pos.y/dimensions.h};
-}
-
-

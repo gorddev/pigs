@@ -39,15 +39,15 @@ namespace pg {
 
         }
 
-        void moveHorizontal(float amount) {
+        void moveHorizontal(const float amount) {
             pos -= glm::normalize(glm::cross(up, forward)) * amount;
         }
 
-        void moveVertical(float amount) {
+        void moveVertical(const float amount) {
             pos += glm::normalize(up) * amount;
         }
 
-        void moveForward(float amount) {
+        void moveForward(const float amount) {
             pos += glm::normalize(forward) * amount;
         }
 

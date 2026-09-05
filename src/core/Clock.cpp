@@ -5,6 +5,7 @@ namespace pg {
         m_time(0), m_dt(0), m_frame(0) {}
 
     void Clock::tick() {
+        // First we handle the main times.
         const uint64_t newTime = SDL_GetTicks();
         m_dt = newTime - m_time;
         m_time = newTime;
@@ -13,5 +14,7 @@ namespace pg {
         time = m_time;
         frame = m_frame;
         dt = m_dt;
+        ftime = static_cast<float>(time);
+        dtf = static_cast<float>(dt);
     }
 }

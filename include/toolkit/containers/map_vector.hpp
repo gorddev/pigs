@@ -2,6 +2,8 @@
 #include <unordered_map>
 #include <variant>
 #include <vector>
+#include <optional>
+#include <algorithm>
 
 // made by gordie novak, feb 22nd, 2026
 
@@ -17,17 +19,17 @@
 
 namespace pg {
 
-    template<typename Key, typename T, typename size_t = std::size_t>
+    template<typename Key, typename T, typename m_size_t = std::size_t>
     class map_vector {
         /// The unordered map that links a custom type to elements in the vector.
-        std::unordered_map<Key, size_t> pair_map;
+        std::unordered_map<Key, m_size_t> pair_map;
         /// The vector stores the actual elements
         std::vector<T> vector;
         /// A vector that holds destroyed elements
-        std::vector<size_t> destroyed;
+        std::vector<m_size_t> destroyed;
     public:
         map_vector() = default;
-        explicit map_vector(size_t reserve) {
+        explicit map_vector(m_size_t reserve) {
             vector.reserve(reserve);
             destroyed.reserve(reserve);
             pair_map.reserve(reserve);
@@ -48,13 +50,13 @@ namespace pg {
             return std::nullopt;
         }
         /// Returns the object at the given index in the vector
-        std::optional<T*> at(size_t index) const {
+        std::optional<T*> at(m_size_t index) const {
             if (index < vector.size() && std::find(destroyed.begin(), destroyed.end(), index) == destroyed.end())
                 return const_cast<T*>(vector.data() + index);
             return std::nullopt;
         }
         /// Adds an element to the vector with a key. Returns the index at which it was added
-        size_t add(Key key, T element) {
+        m_size_t add(Key key, T&& element) {
             if (destroyed.empty()) {
                 if (pair_map.contains(key)) {
                     auto index = pair_map[key];
@@ -82,7 +84,7 @@ namespace pg {
             }
         }
         /// Removes an element with its vector index. Slower than remove with Key.
-        void removeWithIndex(size_t index) {
+        void removeWithIndex(m_size_t index) {
             if (index < vector.size()) {
                 for (auto it = pair_map.begin(); it != pair_map.end(); ++it) {
                     if (it->second == index) {
@@ -97,14 +99,14 @@ namespace pg {
         /// Gets an element with either the key or the index. Requires that
         /// Keys are not an unsigned integral type.
         template<typename K>
-            requires(!std::same_as<Key, size_t> && std::same_as<K, Key>)
+            requires(!std::same_as<Key, m_size_t> && std::same_as<K, Key>)
         std::optional<T*> get(const K& key) const {
             return map(key);
         }
 
-        template<size_t>
-            requires(!std::same_as<Key, size_t>)
-        std::optional<T*> get(const size_t index) const {
+        template<m_size_t>
+            requires(!std::same_as<Key, m_size_t>)
+        std::optional<T*> get(const m_size_t index) const {
             return at(index);
         }
         /// Returns true if the map_vector has the provided key
@@ -125,23 +127,23 @@ namespace pg {
             return vector.back();
         }
 
-        size_t size() {
+        m_size_t size() {
             return vector.size();
         }
 
-        T& operator[](size_t index) {
+        T& operator[](m_size_t index) {
             return vector[index];
         }
 
         /// Returns the vector index of a specific key.
-        std::optional<size_t> indexOf(Key k) {
+        std::optional<m_size_t> indexOf(Key k) {
             if (pair_map.contains(k)) {
                 return pair_map.at(k);
             } return std::nullopt;
         }
 
         /// Returns true if the given index is destroyed
-        [[nodiscard]] bool isDestroyed(size_t i) {
+        [[nodiscard]] bool isDestroyed(m_size_t i) {
             for (auto& index: destroyed) {
                 if (i == index)
                     return true;

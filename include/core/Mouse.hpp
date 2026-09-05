@@ -135,9 +135,9 @@ namespace pg {
         void clearMouseWheel();
 
         // Make sure the mouse state can't be accidentally copied.
-        Mouse& operator=(Mouse&&)              = default;
+        Mouse& operator=(Mouse&&) noexcept     = default;
         Mouse& operator=(const Mouse& other)   = default;
-        Mouse(Mouse&& other)                   = default;
+        Mouse(Mouse&& other) noexcept          = default;
         Mouse(const Mouse& other)              = default;
     };
 

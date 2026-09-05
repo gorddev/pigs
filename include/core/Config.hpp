@@ -2,7 +2,11 @@
 
 #include <toolkit/containers/SettingVar.hpp>
 
-#include "toolkit/typedef.h"
+#include "config/config_Audio.hpp"
+#include "config/config_Warnings.hpp"
+#include "config/config_Callback.hpp"
+#include "config/config_Developer.hpp"
+#include "toolkit/intdef.h"
 
 namespace pg {
 
@@ -12,41 +16,25 @@ namespace pg {
     class Engine;
 
     /// Details all internal options the engine has access to.
-    class Options {
+    class Config {
         template<typename T> using sv = SettingVar<T>; using str = std::string;
     public:
         // All the variables that we can individually set.
-        sv<bool> vsync             = true;
-        sv<u32>  frame_rate        = 120ul;
-        sv<str>  assets_folder     = "assets";      ///< The default assets folder.
+        sv<bool> vsync             = true;      ///< Whether or not vsync is enabled
+        sv<u32>  frame_rate        = 120ul;     ///< Target frame rate of the engine.
+        sv<str>  assets_folder     = "assets";  ///< The default assets folder.
 
-        struct Warnings {
-            struct {
-                bool no_event_func = true;
-                bool no_quit_func  = true;
-                bool no_crash_func = true;
-            } init;
-            struct {
-                bool missing_file = true;
-                bool invalid_format = true;
-            } audio;
-            using static_layout = std::true_type;
-        } warn;
-
-        struct AudioSettings {
-            sv<float> master_volume = 1.f;
-            sv<float> music_volume  = 1.f;
-            sv<float> sfx_volume    = 1.f;
-            sv<float> vocal_volume  = 1.f;
-            u64 default_fade_length = 300;
-        } audio;
+        config::Warnings      warn;             ///< Contains options for all warnings within the engine;
+        config::AudioSettings audio;            ///< Contains options for audio.
+        config::Callbacks     callback;         ///< Contains the callbacks for looping, events, quitting, and crashing.
+        config::Developer     dev;              ///< Contains developer options.
 
     private:
         friend class Engine;
-        void load_options(Engine& e);
+        void init(Engine& e);
     };
 
     namespace opt_nmspc {
-        inline pg::Options pg_internal_options;
+        inline pg::Config pg_internal_options;
     }
 }

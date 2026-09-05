@@ -5,6 +5,11 @@
 #include <utility>
 
 #include <errors/unwrap.hpp>
+#include <errors/error-structs/OpenGL/GLShaderErrors.hpp>
+#include <errors/error-structs/files/FileNotOpened.hpp>
+#include <errors/error-structs/files/FileNotExistsError.hpp>
+
+
 
 typedef uint32_t GLuint;
 typedef uint32_t GLenum;
@@ -18,7 +23,14 @@ namespace pg {
         /// @param vertexShaders The paths to the vertex shaders you want initialized.
         /// @param fragmentShaders The paths to the fragment shaders you want initialized.
         /// @return The ID of the OpenGL shader program.
-        expected<GLuint> makeShaderProgram(
+        expected<
+					GLuint,
+					err::FileNotExists,
+					err::FileNotOpened,
+					err::GLNoShaderProvided,
+					err::GLShaderCompileErr,
+					err::GLShaderLinkErr>
+				makeShaderProgram(
             std::span<const path> vertexShaders,
             std::span<const path> fragmentShaders
         );
@@ -27,7 +39,14 @@ namespace pg {
         /// @param vertexShaders The paths to the vertex shaders you want initialized.
         /// @param fragmentShaders The paths to the fragment shaders you want initialized.
         /// @return The ID of the OpenGL shader program.
-        expected<GLuint> makeShaderProgram(
+        expected<
+					GLuint,
+					err::FileNotExists,
+					err::FileNotOpened,
+					err::GLNoShaderProvided,
+					err::GLShaderCompileErr,
+					err::GLShaderLinkErr>
+				makeShaderProgram(
             std::initializer_list<path> vertexShaders,
             std::initializer_list<path> fragmentShaders
         );
@@ -36,18 +55,17 @@ namespace pg {
         /// @param vertexShaders The raw constant character pointers to the vertex shader strings
         /// @param fragmentShaders The raw constant character pointers to the fragment shader strings.
         /// @return The ID of the OpenGL shader program, if successful.
-        expected<GLuint> rawMakeShaderProgram(
-            std::span<std::pair<char const*, size_t>> vertexShaders,
-            std::span<std::pair<char const*, size_t>> fragmentShaders
+        expected<
+					GLuint,
+					err::FileNotExists,
+					err::FileNotOpened,
+					err::GLNoShaderProvided,
+					err::GLShaderCompileErr,
+					err::GLShaderLinkErr>
+				rawMakeShaderProgram(
+            std::span<std::string_view> vertexShaders,
+            std::span<std::string_view> fragmentShaders
         );
-
-        /// Compiles the provided shader with OpenGL
-        /// @param shaderType The type of shader you want to compile. Only
-        /// fragment and vertex shaders supported.
-        /// @param pathToShader the path to the shader
-        /// @return A handle to the shader id.
-        /// @warning Only fragment and vertex shaders supported.
-        expected<GLuint> compileShaderFromPath(GLenum shaderType, const path& pathToShader);
 
         /// Destroys the given shader from Open GL's context state and VRAM
         /// @param shader The handle of the shader you want to destroy

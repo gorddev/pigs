@@ -1,7 +1,6 @@
 #pragma once
 
 // Returns true if the type can be counted as a vect
-
 #include <type_traits>
 #include <concepts>
 

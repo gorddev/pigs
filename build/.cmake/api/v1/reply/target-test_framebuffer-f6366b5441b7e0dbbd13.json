@@ -1,0 +1,381 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "tests/test_framebuffer"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"sdl_generic_link_dependency",
+			"sdl_link_dependency"
+		],
+		"files" : 
+		[
+			"tests/CMakeLists.txt",
+			"CMakeLists.txt",
+			"external/SDL3/cmake/sdlcommands.cmake",
+			"external/SDL3/CMakeLists.txt",
+			"external/miniaudio/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 14,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 170,
+				"parent" : 3
+			},
+			{
+				"file" : 3
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 1110,
+				"parent" : 5
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 98,
+				"parent" : 6
+			},
+			{
+				"command" : 1,
+				"file" : 2,
+				"line" : 79,
+				"parent" : 7
+			},
+			{
+				"file" : 4
+			},
+			{
+				"command" : 1,
+				"file" : 4,
+				"line" : 4,
+				"parent" : 9
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 10
+	},
+	"compileDependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "pigs::@6890427a1f51a3e7e1df"
+		}
+	],
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-std=gnu++26 -arch arm64"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-O0"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-ffast-math"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-freflection"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-fno-exceptions"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-fno-rtti"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-DPIGS_OpenGL_Core"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 2,
+					"path" : "/Users/gordie/Developer/lib/PIGS/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/gordie/Developer/lib/PIGS/external"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/gordie/Developer/lib/PIGS/external/imgui"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/gordie/Developer/lib/PIGS/include/core"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/gordie/Developer/lib/PIGS/external/glad4"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/gordie/Developer/lib/PIGS/build/external/SDL3/include-revision"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/gordie/Developer/lib/PIGS/external/SDL3/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/gordie/Developer/lib/PIGS/external/stb_image"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/gordie/Developer/lib/PIGS/external/glm"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/gordie/Developer/lib/PIGS/external/miniaudio/."
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "26"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "ImGui::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "GLAD::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "stb_image::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "pigs::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "SDL3-static::@70e5cff702900c793a45"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "glm::@d090a432591bc19a3a56"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "miniaudio::@096ffe1f4cd09f1328fb"
+		}
+	],
+	"id" : "test_framebuffer::@a44f0ac069e85531cdee",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-Wl,-search_paths_first -Wl,-headerpad_max_install_names",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lpthread",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-L/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "../libpigs.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "../libImGui.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "../libGLAD.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "../external/SDL3/libSDL3.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "-lm",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework CoreMedia",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework CoreVideo",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework Cocoa",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-Wl,-weak_framework,UniformTypeIdentifiers",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework IOKit",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework ForceFeedback",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework Carbon",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework Foundation",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework GameController",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework Metal",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework QuartzCore",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-Wl,-weak_framework,CoreHaptics",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "../libstb_image.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "../external/glm/glm/libglm.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "../external/miniaudio/libminiaudio.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-framework CoreAudio",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-framework AudioToolbox",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-framework CoreFoundation",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-lstdc++",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"linkLibraries" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "pigs::@6890427a1f51a3e7e1df"
+		}
+	],
+	"name" : "test_framebuffer",
+	"nameOnDisk" : "test_framebuffer",
+	"paths" : 
+	{
+		"build" : "tests",
+		"source" : "tests"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "tests/test_framebuffer.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

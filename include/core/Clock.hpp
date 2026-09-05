@@ -24,9 +24,10 @@ namespace pg {
         void tick();
     public:
         uint64_t time = 0;      ///< Total time since engine initialization in milliseconds.
-        uint64_t dt = 0;          ///< Time since the previous frame
-        uint64_t frame = 0;    ///< Current frame number
-
+        uint64_t dt = 0;        ///< Time since the previous frame
+        uint64_t frame = 0;     ///< Current frame number
+        float dtf = 0.f;        ///< (Float) time since previous frame.
+        float ftime = 0.f;      ///< (Float) total time since engine initialization in milliseconds.
 
         friend class TimeUpdater;
 

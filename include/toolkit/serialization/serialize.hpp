@@ -1,11 +1,12 @@
 #pragma once
 
-#include "SettingVar.hpp"
+#include <toolkit/containers/SettingVar.hpp>
 #include <meta>
 #include <cstring>
 
 #include "serialdef.hpp"
-#include "typedef.hpp"
+#include <toolkit/intdef.h>
+#include "concepts/byte_containers.hpp"
 
 namespace pg::ser {
 
@@ -98,30 +99,11 @@ namespace pg::ser {
         // Next we write the type bytes
         serializeStructType<r<T>>(bytes);
 
-        size_t fund_cursor;
-        constexpr bool fundy = !std::is_fundamental_v<r<T>>;
-        if constexpr(fundy) {
-            bytes.resize(bytes.size() + sizeof(u16));
-            fund_cursor = bytes.size();
-        }
-
         // Finally we write the struct data
-        bool go=true;
         if constexpr(std::is_class_v<T> && !has_static_layout<T> && !is_container_t<T>) {
-            if (bytes[bytes.size()-3] == static_cast<BV::value_type>(bin_t::NAMED_STRUCT)) {
-                serializeNamedStruct(m, bytes);
-                go = false;
-            }
-            bool tro = true;
-        }
-        if (go) serializeStructData(m, bytes);
-
-        if constexpr(fundy) {
-            u16 struct_size = bytes.size() - fund_cursor;
-            std::memcpy(&bytes[fund_cursor-sizeof(u16)], &struct_size, sizeof(u16));
-        }
+            serializeNamedStruct(m, bytes);
+        } else serializeStructData(m, bytes);
     }
-
 
     template<typename T, typename BV> requires(is_byte_vector<BV>)
     void serializeNamedStruct(const T& data, BV& bytes) {

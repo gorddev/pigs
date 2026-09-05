@@ -1,0 +1,309 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3-collector::@70e5cff702900c793a45",
+					"jsonFile" : "target-SDL3-collector-eb381b0fa83b41f6c724.json",
+					"name" : "SDL3-collector",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3_Headers::@70e5cff702900c793a45",
+					"jsonFile" : "target-SDL3_Headers-ca9d1edc2060553b1600.json",
+					"name" : "SDL3_Headers",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3_test-collector::@70e5cff702900c793a45",
+					"jsonFile" : "target-SDL3_test-collector-e696d3361544a2f7d79b.json",
+					"name" : "SDL3_test-collector",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "glm-header-only::@d090a432591bc19a3a56",
+					"jsonFile" : "target-glm-header-only-1370bd34403157320eb7.json",
+					"name" : "glm-header-only",
+					"projectIndex" : 2
+				}
+			],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						4,
+						5
+					],
+					"jsonFile" : "directory-.-fd6451d79dc282e2f566.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.29"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						5,
+						6
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"build" : "external/SDL3",
+					"jsonFile" : "directory-external.SDL3-febe37ee6d4dd0984436.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.24"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "external/SDL3",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "external/glm",
+					"childIndexes" : 
+					[
+						3
+					],
+					"jsonFile" : "directory-external.glm-fda7db6ca9078a8a3103.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "external/glm"
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						3
+					],
+					"build" : "external/glm/glm",
+					"jsonFile" : "directory-external.glm.glm-867f2150a7aaa2d03b88.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 2,
+					"source" : "external/glm/glm",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "external/miniaudio",
+					"jsonFile" : "directory-external.miniaudio-069ffe724f70e49ad0cc.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.29"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "external/miniaudio",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "tests",
+					"jsonFile" : "directory-tests-3aa3c3dd1c72104aceb3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.29"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "tests",
+					"targetIndexes" : 
+					[
+						7,
+						8,
+						9,
+						10
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						4,
+						5
+					],
+					"name" : "pigs",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "SDL3",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						2,
+						3
+					],
+					"name" : "glm",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "GLAD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-GLAD-feeb21e1817017ace56f.json",
+					"name" : "GLAD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ImGui::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ImGui-e829658bbc7897a8d25d.json",
+					"name" : "ImGui",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3-static::@70e5cff702900c793a45",
+					"jsonFile" : "target-SDL3-static-4dd9a970c6e3b0d0ef96.json",
+					"name" : "SDL3-static",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "glm::@d090a432591bc19a3a56",
+					"jsonFile" : "target-glm-eba604de46c6c1a06e60.json",
+					"name" : "glm",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "miniaudio::@096ffe1f4cd09f1328fb",
+					"jsonFile" : "target-miniaudio-fbdff3d2a00873e46dbe.json",
+					"name" : "miniaudio",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pigs::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pigs-b4dc0d70c919248577d9.json",
+					"name" : "pigs",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "stb_image::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-stb_image-33d61053e6bf0bb5c07e.json",
+					"name" : "stb_image",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "test_errors::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-test_errors-322b82c29910418111e6.json",
+					"name" : "test_errors",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "test_framebuffer::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-test_framebuffer-f6366b5441b7e0dbbd13.json",
+					"name" : "test_framebuffer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "test_mem::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-test_mem-79992f91aee6e5590619.json",
+					"name" : "test_mem",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "test_scripting::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-test_scripting-8fbecb530cfec81ddd0f.json",
+					"name" : "test_scripting",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/gordie/Developer/lib/PIGS/build",
+		"source" : "/Users/gordie/Developer/lib/PIGS"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 10
+	}
+}

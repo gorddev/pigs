@@ -3,18 +3,18 @@
 #include <optional>
 
 #include "Texture.hpp"
+#include "errors/error-structs/OpenGL/GLFramebufferErrors.hpp"
+#include "errors/error-structs/OpenGL/GLTextureErrors.hpp"
+#include "errors/error-structs/OpenGL/GenericGLError.hpp"
 #include <toolkit/types/rect.hpp>
 #include <toolkit/types/frect.hpp>
 
 
 /* Created by Gordie Novak on 3/13/26.
- * Purpose: 
+ * Purpose:
  * Stores a writable texture (a framebuffer) so for each scene, or shadow obj,
  * you can write to a framebuffer, and then scale it up to the window!
  */
-
-using GLuint = uint32_t;
-using GLint = int32_t;
 
 namespace pg {
     struct VertexBuffer;
@@ -37,9 +37,15 @@ namespace pg {
          * @param h The height of the framebuffer you want to generate
          * @param mode The scale mode of the framebuffer generated
          * @return A Framebuffer if creation was successful. An @code std::nullopt@endcode otherwise. */
-        static expected<FrameBuffer> make(uint32_t w, uint32_t h, ScaleMode mode = PG_PIXEL) noexcept;
+        static pg::expected<
+        	FrameBuffer,
+         	err::GLTexGenerationFailure,
+          err::GLTexParameterInitFailure,
+          err::GenericOpenGLError,
+          err::GLFramebufferIncomplete>
+        make(uint32_t w, uint32_t h, ScaleMode mode = PG_PIXEL) noexcept;
 
-        Err resize(uint32_t w, uint32_t h) noexcept;
+        optional_err<err::GLFramebufferInvalidResize> resize(uint32_t w, uint32_t h) noexcept;
 
         /** Bind this framebuffer to be drawn to */
         void bind() const noexcept;
@@ -57,5 +63,3 @@ namespace pg {
     };
 
 }
-
-

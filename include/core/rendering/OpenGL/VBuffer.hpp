@@ -3,6 +3,8 @@
 #include <ostream>
 
 #include "PVertex.hpp"
+#include "errors/Error.hpp"
+#include "errors/error-structs/OpenGL/GLVertexBufferErrors.hpp"
 #include "toolkit/apidef.h"
 #include <core/errors/unwrap.hpp>
 #include <span>
@@ -60,10 +62,12 @@ namespace pg {
          * @param shaderLoc The location in the shader you want to upload the data to. Must be divisible by 4.
          * @return An optional GLuint: exists if creation was successful
          * @warning shaderLoc must be divisible by four. */
-        [[nodiscard]] Err genMatrixBuffer(size_t shaderLoc);
+        [[nodiscard]] optional_err<err::GLMatrixBufferInvalidShaderLoc>
+        	genMatrixBuffer(size_t shaderLoc);
         void updateMatrixBuffer(std::span<const glm::mat4>);
 
-        [[nodiscard]] Err genColorVBO(size_t shaderLoc);
+        [[nodiscard]] optional_err<err::GLColorBufferInvalidShaderLoc>
+        	genColorVBO(size_t shaderLoc);
         void updateColorBuffer(std::span<const vec4> colors);
 
         VBuffer& glBind();

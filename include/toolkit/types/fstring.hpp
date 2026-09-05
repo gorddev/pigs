@@ -166,7 +166,7 @@ namespace pg {
 
 /** @brief Throws an exception for str_view errors */
 static void fstr_view_throw_err(const char err[]) {
-    throw std::runtime_error(err);
+  std::puts(err);
 }
 
 namespace pg {
@@ -355,9 +355,9 @@ namespace pg {
         static_assert(C >= 2 && C <= 65533, "fstring capacity must be at least 2, and less than 65533");
     private:
         /// Current length of the fstring
-        uint32_t len;
+        uint32_t len = 0;
         /// Array containing the information of the fstring
-        char arr[C + 1];
+        mutable char arr[C + 1];
         /// Current precision of the array
         uint8_t prec = 10;
 
@@ -384,7 +384,7 @@ namespace pg {
         /// Returns the capacity of the fstring
         [[nodiscard]] static constexpr uint32_t capacity();
         /// Returns the data containing the fstring
-        [[nodiscard]] const char* c_str();
+        [[nodiscard]] const char* c_str() const;
         /// Returns the data in the fstring
         [[nodiscard]] char* data();
         /// Returns true if the fstring is empty
@@ -400,6 +400,8 @@ namespace pg {
         template<size_t N>
             requires(N <= C)
         void resize();
+        /// Resizes dynamically such that the fstring is of a certain size.
+        void resize(uint32_t n);
 
         // <><><> Emplacing <><><>
         /// Emplace text at a position within the string
@@ -477,7 +479,7 @@ namespace pg {
 // fstring implementation below
 
 static inline void fstring_throw_err(const char err[]) {
-    throw std::runtime_error(err);
+  std::puts(err);
 }
 
 // ****************************** -------------------
@@ -550,7 +552,7 @@ constexpr uint32_t pg::fstring<C>::capacity() {
 }
 
 template<uint32_t C>
-const char* pg::fstring<C>::c_str()  {
+const char* pg::fstring<C>::c_str() const {
     arr[len] = '\0';
     return &arr[0];
 }
@@ -582,7 +584,12 @@ template<uint32_t C>
 template<size_t N>
     requires(N <= C)
 void pg::fstring<C>::resize() {
-    len = N - 1;
+    len = N;
+}
+
+template<uint32_t C>
+void pg::fstring<C>::resize(const uint32_t n) {
+    if (n < C) len = n;
 }
 
 template<uint32_t C>

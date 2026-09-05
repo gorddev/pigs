@@ -4,8 +4,6 @@
 #include <glm/gtc/quaternion.hpp>
 
 namespace pg {
-
-
     struct Transform {
         /// The current position of the model: x, y, z
         glm::vec3 pos{0.f,0.f, 0.f};

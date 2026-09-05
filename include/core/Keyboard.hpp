@@ -1,9 +1,13 @@
 #pragma once
 #include <array>
-#include <SDL3/SDL_scancode.h>
-#include <core/enums/KeypressEnum.hpp>
+#include <bitset>
+#include <cstring>
 
-#include "errors/pig_err.hpp"
+#include <SDL3/SDL_scancode.h>
+
+#include <core/enums/KeypressEnum.hpp>
+#include "errors/unwrap.hpp"
+#include <core/callbacks/SDL_ForwardDeclaration.hpp>
 
 // Created by Gordie Novak on 2/26/26.
 // handles keyboard management and data access for currently held keys.
@@ -16,6 +20,10 @@ namespace pg {
         static constexpr int maxKeys = 256;
         /// Array of each key. True if the key is held down. False otherwise.
         std::array<bool, maxKeys> keys{};
+        /** TRUE if the key was tapped this frame. False otherwise */
+        std::bitset<maxKeys> tapped_1{};
+        std::bitset<maxKeys> tapped_2{};
+        std::bitset<maxKeys>* tapped_active = &tapped_1;
 
         friend struct InputUpdater;
         friend class EngineCore;
@@ -30,7 +38,7 @@ namespace pg {
         [[nodiscard]] bool isHeld(SDL_Scancode key) const {
             if (key < maxKeys)
                 return keys[key];
-            panic("InputState::isHeld(SDL_Scancode key)",
+            PG_Panic(
                 "The SDL_Scancode ", key, " is not a valid scancode for retrieving user input.\n"
                                           "Scancodes must be less than ", maxKeys, ".");
             return false;
@@ -125,9 +133,17 @@ namespace pg {
                 c -= ('A' + 61);
             } else if (internal_keyboard_map::keyMap.contains(c)) {
                 c = internal_keyboard_map::keyMap.at(c);
-            } else panic("InputState::isHeld(SDL_Scancode key)",
-                "The key specified by \'", c, "\' is not a valid keymap.");
+            } else PG_Panic("The key specified by \'", c, "\' is not a valid keymap.");
             return static_cast<KeypressType>(c);
+        }
+
+        template<typename T>
+            requires(isValidKeypressType<T>)
+        bool isTapped(T key) {
+            if constexpr(std::is_same_v<T, char>)
+                return (*tapped_active)[convertCharToScancode(key)];
+            else
+                return (*tapped_active)[key];
         }
 
     private:
@@ -136,6 +152,27 @@ namespace pg {
         Keyboard& operator=(const Keyboard& other)= default;   ///< Nope. You can't do that.
         Keyboard(Keyboard&& other)                = default;   ///< Nope. You can't do that.
         Keyboard(const Keyboard& other)           = default;   ///< Nope. You can't do that.
-    };
 
+        void update() {
+            const bool* ptr = SDL_GetKeyboardState(nullptr);
+            std::memcpy(keys.data(), ptr, maxKeys);
+            if (tapped_active==&tapped_1) {
+                tapped_1.reset();
+                tapped_active = &tapped_2;
+            } else {
+                tapped_2.reset();
+                tapped_active = &tapped_1;
+            }
+        }
+
+        void onKeyPress(const SDL_Event& event) {
+            if (tapped_active == &tapped_1) {
+                tapped_2.set(event.key.scancode);
+            } else {
+                tapped_1.set(event.key.scancode);
+            }
+        }
+
+        friend SDL_AppResult (::SDL_AppEvent(void*, SDL_Event* event));
+    };
 }

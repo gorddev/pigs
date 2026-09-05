@@ -1,13 +1,15 @@
 #pragma once
 
 #include <expected>
-#include <toolkit/RenderingSettings.hpp>
+#include <core/rendering/RenderingSettings.hpp>
 #include <toolkit/apidef.h>
 
+#include "errors/error-structs/OpenGL/GenericGLError.hpp"
+#include "errors/error-structs/OpenGL/GLTextureErrors.hpp"
 #include "errors/unwrap.hpp"
 
 /* Created by Gordie Novak on 3/11/26.
- * Purpose: 
+ * Purpose:
  * Creates & stores texture information into one convenient object.*/
 
 namespace pg {
@@ -41,7 +43,12 @@ namespace pg {
          * @return An optional texture object.
          * @warning The @code tex_id@endcode parameter is not initialized and must be done afterwords
          */
-        static expected<Texture> make2D(
+        static expected<
+          Texture,
+          err::GenericOpenGLError,
+          err::GLTexParameterInitFailure,
+          err::GLTexGenerationFailure>
+        make2D(
             const void* pixels,
             uint32_t w,
             uint32_t h,
@@ -62,7 +69,11 @@ namespace pg {
          * @return The texture object if creation was successful. @code std::nullopt@endcode otherwise.
          * Check @code PIG_GetLog()@endcode for error.
          */
-        static expected<Texture> make_packed(
+        static expected<
+          Texture,
+          err::GLTexParameterInitFailure,
+          err::GLTexGenerationFailure>
+        make_packed(
             const void *pixels,
             u32 w,
             u32 h,

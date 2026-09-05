@@ -9,6 +9,7 @@ namespace pg {
     class Engine;
     class Config;
 
+    /** Contains internal metrics concerning the Engine for engine-wide use */
     inline class EngineStatus {
     private:
         template<typename T>

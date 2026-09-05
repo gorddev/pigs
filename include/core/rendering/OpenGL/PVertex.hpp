@@ -7,7 +7,7 @@
 
 #include <type_traits>
 
-#include "../apidef.h"
+#include "toolkit/apidef.h"
 
 namespace pg {
     /** Is_Vertex requires that a vertex struct have an @code static void attribute()@endcode
@@ -77,26 +77,45 @@ namespace pg {
         static_assert(Is_Vertex<Self>);
     };
 
-    /** Color vertex with three position attributes and four color attributes (r,g,b,a).
-     * Primarily used for drawing primitive shapes without lighting. */
+    /** (Color Vertex): Vertex with positions and color. */
     struct CVertex {
         using Self = CVertex;
 
-        float x, y, z;
-        float r, g, b, a;
-        static constexpr size_t num_attributes = 2;
+        float x, y, z; //< position data
+        float r, g, b, a; //< color;
 
         static void setup_attributes() {
-            // setting up position pointer (x,y,z)
+            // setting up (x,y,z)
             glVertexAttribPointer(0, 3,
                 GL_FLOAT, GL_FALSE,
                 sizeof(Self), reinterpret_cast<void*>(offsetof(Self, x))
             ); glEnableVertexAttribArray(0);
-            // setting up color pointer (r, g, b, a)
+            // setting up (x,y,z)
             glVertexAttribPointer(1, 4,
                 GL_FLOAT, GL_FALSE,
                 sizeof(Self), reinterpret_cast<void*>(offsetof(Self, r))
-            ); glEnableVertexAttribArray(1);
+            ); glEnableVertexAttribArray(0);
+        }
+        // —————————————————————————— //
+
+        static constexpr size_t num_attributes = 1;
+        static_assert(Is_Vertex<Self>);
+    };
+
+    /** Color vertex with three position attributes and four color attributes (r,g,b,a).
+     * Primarily used for drawing primitive shapes without lighting. */
+    struct FVertex {
+        using Self = FVertex;
+
+        float x, y, u, v;
+        static constexpr size_t num_attributes = 1;
+
+        static void setup_attributes() {
+            // setting up position pointer (x,y,u,v)
+            glVertexAttribPointer(0, 4,
+                GL_FLOAT, GL_FALSE,
+                sizeof(Self), reinterpret_cast<void*>(offsetof(Self, x))
+            ); glEnableVertexAttribArray(0);
         }
         // —————————————————————————— //
         static_assert(Is_Vertex<Self>);

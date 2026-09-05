@@ -3,7 +3,6 @@
 // Returns true if the type can be counted as a string or not
 
 #include <type_traits>
-#include <concepts>
 #include "is_bytes_t.hpp"
 
 

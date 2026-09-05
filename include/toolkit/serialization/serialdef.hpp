@@ -2,14 +2,20 @@
 #include <cstddef>
 #include <type_traits>
 
-#include "typedef.hpp"
-#include "concepts/is_array_like.hpp"
-#include "concepts/is_bytes_t.hpp"
-#include "concepts/is_specialization_of.hpp"
-#include "concepts/is_static_storage_array.hpp"
 
+#include <toolkit/intdef.h>
+#include <toolkit/serialization/concepts/is_array_like.hpp>
+#include <toolkit/serialization/concepts/is_bytes_t.hpp>
+#include <toolkit/serialization/concepts/is_specialization_of.hpp>
+#include <toolkit/serialization/concepts/is_static_storage_array.hpp>
 
 namespace pg::ser {
+
+    template<typename T>
+    concept has_static_layout = requires{
+        typename T::static_layout;
+        requires std::is_trivially_copyable_v<T>;
+    };
 
     /// If a variable's data can be copied without worry of additional members being added
     template<typename T>
@@ -17,13 +23,8 @@ namespace pg::ser {
         std::is_fundamental_v<T> ||
         std::is_array_v<T> ||
         std::is_union_v<T> ||
-        std::is_enum_v<T>;
-
-    template<typename T>
-    concept has_static_layout = requires{
-        typename T::static_layout;
-        requires std::is_trivially_copyable_v<T>;
-    };
+        std::is_enum_v<T> ||
+        has_static_layout<T>;
 
     /// If this is a type we can just memcpy without writing object size.
     template<typename T>
@@ -36,7 +37,6 @@ namespace pg::ser {
             !std::is_void_v<T> &&
             !std::is_same_v<T, std::nullptr_t>
         );
-
 
     template<typename T>
     concept is_container_t = (
@@ -160,17 +160,5 @@ namespace pg::ser {
         default:
             return 0;
         }
-    }
-
-    template <typename E>
-        requires std::is_enum_v<E>
-        constexpr std::string_view enumToString(E value) {
-        // Loop over the enumerators of the enum type
-        template for (constexpr std::meta::info enumerator : std::define_static_array(std::meta::enumerators_of(^^E))) {
-            if (value == [:enumerator:]) {
-                return std::meta::identifier_of(enumerator);
-            }
-        }
-        return "Unknown";
     }
 }

@@ -4,9 +4,7 @@
  * Purpose: 
  */
 
-#include <SDL3/SDL_video.h>
-
-#include "../toolkit/RenderingSettings.hpp"
+#include "rendering/RenderingSettings.hpp"
 #include "../toolkit/types/dim2.hpp"
 #include "../toolkit/types/vec.hpp"
 
@@ -14,6 +12,8 @@
 
 // new window management system so you can easily adjust window properties
 
+
+struct SDL_Window;
 
 namespace pg {
 
@@ -47,28 +47,28 @@ namespace pg {
         // <<< Setters >>> //
 
         // most important setters
-        void setDimensions(dim2 dim);           ///< Sets the window width & height @code {w, h}@endcode (in pixels)
-        void setWidth(uint32_t width);          ///< Sets the width of the window (in pixels).
-        void setHeight(uint32_t height);        ///< Sets the height of the window (in pixels).
-        void setPosition(vec2 pos) const;       ///< Sets the position of the window (in pixels)
-        void setGLClearColor(vec4) const;       ///< Sets the clear color of the current OpenGL context.
-        void setFullscreen();                   ///< Sets the window to fullscreen mode.
-        void setWindowed();                     ///< Sets the window into "Windowed" mode.
+        Window& setDimensions(dim2 dim);           ///< Sets the window width & height @code {w, h}@endcode (in pixels)
+        Window& setWidth(uint32_t width);          ///< Sets the width of the window (in pixels).
+        Window& setHeight(uint32_t height);        ///< Sets the height of the window (in pixels).
+        Window& setPosition(vec2 pos);             ///< Sets the position of the window (in pixels)
+        Window& setGLClearColor(vec4);             ///< Sets the clear color of the current OpenGL context.
+        Window& setFullscreen();                   ///< Sets the window to fullscreen mode.
+        Window& setWindowed();                     ///< Sets the window into "Windowed" mode.
 
         // secondary setters
-        void setResizable(bool);                ///< Enables/disables window resizability
-        void setFloatOnTop(bool);               ///< Enables/disables the window staying on top of other windows.
-        void setMouseGrab(bool);                ///< Confines/frees the mouse to the window
-        void setMouseLocking(bool);             ///< Locks/unlocks & hides/unhides the mouse (like in an FPS game).
-        void setKeyboardGrab(bool) ;            ///< Locks/unlocks the keyboard to the window.
-        void setIcon(const char pathToImage[]); ///< Sets the icon of the application to the image at the given path.
-        void setName(const char name[]) const;  ///< Sets the name of the window
-        void hide();                            ///< Makes the window hidden if currently visible.
-        void show();                            ///< Makes the window visible if currently hidden.
+        Window& setResizable(bool);                ///< Enables/disables window resizability
+        Window& setFloatOnTop(bool);               ///< Enables/disables the window staying on top of other windows.
+        Window& setMouseGrab(bool);                ///< Confines/frees the mouse to the window
+        Window& setMouseLocking(bool);             ///< Locks/unlocks & hides/unhides the mouse (like in an FPS game).
+        Window& setKeyboardGrab(bool);             ///< Locks/unlocks the keyboard to the window.
+        Window& setIcon(const char pathToImage[]); ///< Sets the icon of the application to the image at the given path.
+        Window& setName(const char name[]);        ///< Sets the name of the window
+        Window& hide();                            ///< Makes the window hidden if currently visible.
+        Window& show();                            ///< Makes the window visible if currently hidden.
         /** Sets the opacity of the window
           * @note Requires flag @code WindowTransparent@endcode enabled at launch.
           * @warning Not web-safe. Does not work within web browsers.  */
-        void setOpacity(float opacity) const;
+        Window& setOpacity(float opacity);
 
     // ************************************************************** //
 
@@ -97,8 +97,8 @@ namespace pg {
         [[nodiscard]] float     getHeight() const noexcept;         ///< Returns the height of the current window (in pixels)
         [[nodiscard]] vec2      getPosition() const noexcept;       ///< Returns the position of the current window {x, y} (in pixels)
         [[nodiscard]] dim2      getWindowPixelSize() const noexcept;
-        [[nodiscard]] float     getPixelWidth() const noexcept;
-        [[nodiscard]] float     getPixelHeight() const noexcept;
+        [[nodiscard]] uint16_t  getPixelWidth() const noexcept;
+        [[nodiscard]] uint16_t  getPixelHeight() const noexcept;
         [[nodiscard]] SDL_WindowID getWindowId() const noexcept;
         [[nodiscard]] SDL_GLContext getGLContext() const noexcept;  ///< Returns GLContext object
 
@@ -125,6 +125,6 @@ namespace pg {
         float dpiScale;         ///< Scale due to High DPI displays.
 
         Window(SDL_Window*, WindowProperty, SDL_WindowID, SDL_GLContext, vec2);
-        void updateWindowDimensions();
+        Window& updateWindowDimensions();
     };
 }

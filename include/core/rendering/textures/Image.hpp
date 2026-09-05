@@ -1,14 +1,18 @@
 #pragma once
 #include <cstdint>
 #include <expected>
+#include <filesystem>
 #include <stb_image/stb_image.h>
 
-#include "errors/Error.hpp"
-#include <toolkit/filesystem/path.hpp>
+#include <core/errors/error-structs/files/FileNotExistsError.hpp>
+#include <core/errors/error-structs/library/STBImageError.hpp>
+#include <core/filesystem/path.hpp>
 
 // Created by Gordie Novak on 2/27/26.
 // used to automatically allocate/deallocate image data
 // from stb.
+
+
 
 namespace pg {
 
@@ -19,19 +23,23 @@ namespace pg {
         uint8_t* pixels;
         const uint16_t w, h;
 
-        static std::expected<Image, Error> make(const path& path) {
-            if (!path.is_regular_file()) {
-                return PG_MAKE_UERR("Path ", path.c_str(), " is not a regular valid file to load from.");
+        static expected<
+          Image,
+          err::FileNotExists,
+          err::STBImage
+        > make(const path& path) {
+            if (!std::filesystem::exists(path)) {
+                return PG_UErrNew(err::FileNotExists, .file_name = path.c_str());
             }
 
             int width, height, channels;
             uint8_t* pixels = stbi_load(
-                path.expand().c_str(),
+                path,
                 &width, &height,
                 &channels, 0);
 
             if (!pixels) {
-                return PG_MAKE_UERR("STB_Image reported failure with error: ", stbi_failure_reason());
+                return PG_UErrNew(err::STBImage, .failure_reason = stbi_failure_reason());
             }
 
             return Image(pixels, width, height);

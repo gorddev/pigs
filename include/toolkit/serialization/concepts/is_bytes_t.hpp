@@ -2,10 +2,8 @@
 #include <cstddef>
 #include <type_traits>
 
-#include "typedef.hpp"
-
 /* Created by Gordie Novak on 8/10/26.
- * Purpose: 
+ * Purpose:
  */
 
 
@@ -26,26 +24,26 @@ namespace pg::ser {
 
     template<typename T>
     concept is_u16_t =
-        sizeof(T)==2u && std::is_unsigned_v<T>;
+        sizeof(T)==2u && std::is_unsigned_v<T> && std::is_integral_v<T>;
 
     template<typename T>
     concept is_i16_t =
-        sizeof(T)==2u && std::is_signed_v<T>;
+        sizeof(T)==2u && std::is_signed_v<T> && std::is_integral_v<T>;
 
     template<typename T>
     concept is_u32_t =
-        sizeof(T)==4u && std::is_unsigned_v<T>;
+        sizeof(T)==4u && std::is_unsigned_v<T> && std::is_integral_v<T>;
 
     template<typename T>
     concept is_i32_t =
-        sizeof(T)==4u && std::is_signed_v<T>;
+        sizeof(T)==4u && std::is_signed_v<T> && std::is_integral_v<T>;
 
     template<typename T>
     concept is_u64_t =
-        sizeof(T)==8u && std::is_unsigned_v<T>;
+        sizeof(T)==8u && std::is_unsigned_v<T> && std::is_integral_v<T>;
 
     template<typename T>
     concept is_i64_t =
-        sizeof(T)==8u && std::is_signed_v<T>;
+        sizeof(T)==8u && std::is_signed_v<T> && std::is_integral_v<T>;
 
 }
