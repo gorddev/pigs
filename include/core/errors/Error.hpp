@@ -1,6 +1,6 @@
 #pragma once
 
-#include <errors/panic.hpp>
+#include "panic.hpp"
 #include <memory>
 #include <toolkit/intdef.h>
 #include <variant>
@@ -179,23 +179,14 @@ namespace pg {
 
     std::string display_str() {
       constexpr auto size_per_trace_estimate = 40;
-      std::string what_str = this->what();
 
       std::string ret;
+      std::string what_str = this->what();
       ret.reserve(data->trace.size() * size_per_trace_estimate + what_str.length());
 
       auto trace_span = data->trace.get_trace();
-      auto timestamp_0 = trace_span[0].timestamp;
 
-      ret = ret +
-        "────\x1B[35m\x1B[1m{HEAD: " + data->err_type_str + "}\x1B[0m────\n"
-        "⟨ src ⟩\x1B[90m─┬─\x1B[0m⟨ \x1B[1m\x1B[33m" + trace_span[0].func + "\x1B[0m\n"
-        "        \x1B[90m╰─⟨ "
-          + trace_span[0].file + ':' + std::to_string(trace_span[0].line)
-          + ' ' + ctime(&timestamp_0) +
-          "\x1B[31m" + what_str + "\x1B[0m\n";
-
-      for(size_t i = 1; i < data->trace.size(); i++) {
+      for(size_t i = data->trace.size()-1; i != 0; i--) {
         uint32_t c = i, d = 1u;
         while (c/10!=0) { c/=10; d--; }
         auto timestamp_i = trace_span[i].timestamp;
@@ -205,8 +196,18 @@ namespace pg {
                 "        \x1B[90m╰─⟨ ";
         ret += trace_span[i].file;
         ret += ':';
-        ret += std::to_string(trace_span[i].line) + ' ' + ctime(&timestamp_i) + "\x1B[0m\n";
+        ret += std::to_string(trace_span[i].line) + ' ' + ctime(&timestamp_i) + "\x1B[0m";
       }
+
+      auto timestamp_0 = trace_span[0].timestamp;
+
+      ret = ret +
+        "────\x1B[35m{HEAD: \x1B[1m" + data->err_type_str + "\x1B[22m}\x1B[0m────\n"
+        "⟨ src ⟩\x1B[90m─┬─\x1B[0m⟨ \x1B[1m\x1B[33m" + trace_span[0].func + "\x1B[0m\n"
+        "        \x1B[90m╰─⟨ "
+          + trace_span[0].file + ':' + std::to_string(trace_span[0].line)
+          + ' ' + ctime(&timestamp_0) +
+          "\x1B[31m" + what_str + "\x1B[0m\n";
 
       return ret;
     }

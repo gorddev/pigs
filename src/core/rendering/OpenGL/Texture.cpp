@@ -1,14 +1,17 @@
 #include "core/rendering/OpenGL/Texture.hpp"
-#include "errors/error-structs/OpenGL/GenericGLError.hpp"
+#include "err-types/OpenGL/GenericGLError.hpp"
+#include "toolkit/apidef.h"
 
 #include <expected>
 
-#include <core/errors/unwrap.hpp>
+#include <unwrap.hpp>
 
 using namespace pg;
 
 Texture::~Texture() {
+	if (gl_id) {
     glDeleteTextures(1, &gl_id);
+	}
 }
 
 Texture::Texture(Texture&& o) noexcept {
@@ -21,6 +24,7 @@ Texture::Texture(Texture&& o) noexcept {
 
 Texture& Texture::operator=(Texture&& o) noexcept {
     std::swap(gl_id, o.gl_id);
+    std::swap(target, o.target);
     std::swap(w, o.w);
     std::swap(h, o.h);
     return *this;
@@ -34,13 +38,14 @@ expected<
     err::GenericOpenGLError,
     err::GLTexParameterInitFailure,
     err::GLTexGenerationFailure>
-  Texture::make2D(
-    const void* pixels,
-    const uint32_t w,
-    const uint32_t h,
-    const ScaleMode scaleMode,
-    const GLuint texFormat, //< GL Macro for rgba
-    const GLuint sizeofPixel)
+    Texture::make2D(
+        const void* pixels,
+        const uint32_t w,
+        const uint32_t h,
+        const ScaleMode scaleMode,
+        const GLenum internalFormat, // e.g., GL_R8
+        const GLenum pixelFormat,    // e.g., GL_RED
+        const GLenum pixelType)      // e.g., GL_UNSIGNED_BYTE
     noexcept
 {
     GLenum error;
@@ -56,10 +61,10 @@ expected<
 
 
     if (scaleMode == PG_PIXEL) {
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     } else if (scaleMode == PG_LINEAR) {
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     }
 
@@ -71,11 +76,11 @@ expected<
     glTexImage2D(
         GL_TEXTURE_2D,
         0,
-        static_cast<int>(texFormat),
+        static_cast<int>(internalFormat),
         static_cast<int>(w), static_cast<int>(h),
         0,
-        texFormat,
-        sizeofPixel,
+        pixelFormat,
+        pixelType,
         pixels
     );
 
@@ -106,11 +111,12 @@ Texture::make_packed(const void* pixels, u32 w, u32 h, ScaleMode scaleMode,
     // Bind the texture to the texture id.
     glBindTexture(GL_TEXTURE_2D, gl_id);
 
+
     if (scaleMode == PG_PIXEL) {
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     } else if (scaleMode == PG_LINEAR) {
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     }
 
@@ -141,8 +147,32 @@ Texture::make_packed(const void* pixels, u32 w, u32 h, ScaleMode scaleMode,
     return Texture{gl_id, target, w, h};
 }
 
+
 Texture& Texture::glBind(GLuint textureSlot) {
-    glActiveTexture(textureSlot);
-    glBindTexture(target, gl_id);
-    return *this;
+  glActiveTexture(textureSlot);
+  glBindTexture(target, gl_id);
+  return *this;
+}
+
+
+optional_err<
+	err::GLTexGenerationFailure>
+Texture::overwrite(
+	const void* pixels,
+  const GLenum pixelFormat,
+  const GLenum pixelType
+) {
+	glBindTexture(this->target, this->gl_id);
+	glTexSubImage2D(
+		target,
+		0,
+		0, 0,
+		this->w, this->h,
+		pixelFormat,
+		pixelType,
+		pixels
+	);
+	glBindTexture(this->target, 0);
+
+	return std::nullopt;
 }

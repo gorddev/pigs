@@ -6,7 +6,7 @@ namespace pg {
 
     void Clock::tick() {
         // First we handle the main times.
-        const uint64_t newTime = SDL_GetTicks();
+        const uint64_t newTime = SDL_GetTicksNS();
         m_dt = newTime - m_time;
         m_time = newTime;
         ++m_frame;

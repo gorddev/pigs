@@ -1,9 +1,8 @@
 #pragma once
 // ************************************************ //
 
-#include "errors/Error.hpp"
-#include "errors/error-structs/OpenGL/GLVertexBufferErrors.hpp"
-#include <optional>
+#include <core/errors/Error.hpp>
+#include <core/errors/err-types/OpenGL/GLVertexBufferErrors.hpp>
 template <typename V>
   requires(Is_Vertex<V>)
 VBuffer<V>::VBuffer(VBuffer &&other) noexcept
@@ -97,6 +96,7 @@ void VBuffer<Vertex_t>::updateMatrixBuffer(std::span<const glm::mat4> mats) {
 
 // ************************************************ //
 
+/*
 template <typename V>
   requires(Is_Vertex<V>)
 optional_err<err::GLColorBufferInvalidShaderLoc>
@@ -113,14 +113,15 @@ VBuffer<V>::genColorVBO(size_t shaderLoc) {
   glEnableVertexAttribArray(shaderLoc);
   return std::nullopt;
 }
-
+*/
+/*
 template <typename V>
   requires(Is_Vertex<V>)
 void VBuffer<V>::updateColorBuffer(std::span<const vec4> colors) {
   glBindBuffer(GL_ARRAY_BUFFER, cbo);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vec4) * colors.size(), colors.data(),
                GL_DYNAMIC_DRAW);
-}
+               }*/
 
 template <typename V>
   requires(Is_Vertex<V>)
@@ -160,4 +161,11 @@ template <typename Vertex_t>
 VBuffer<Vertex_t> &VBuffer<Vertex_t>::glUnbind() {
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   return *this;
+}
+
+
+template <typename Vertex_t>
+  requires(Is_Vertex<Vertex_t>)
+u32 VBuffer<Vertex_t>::size() {
+	return this->vertexCount;
 }

@@ -6,8 +6,9 @@
 #include <SDL3/SDL_scancode.h>
 
 #include <core/enums/KeypressEnum.hpp>
-#include "errors/unwrap.hpp"
 #include <core/callbacks/SDL_ForwardDeclaration.hpp>
+
+#include <core/errors/unwrap.hpp>
 
 // Created by Gordie Novak on 2/26/26.
 // handles keyboard management and data access for currently held keys.

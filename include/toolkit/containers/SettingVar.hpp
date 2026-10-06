@@ -4,6 +4,8 @@
 #include <functional>
 #include <type_traits>
 #include <string>
+#include <vector>
+
 #include <toolkit/serialization/concepts/is_vector.hpp>
 
 #include "toolkit/concepts/has_+-*div_operator.hpp"
@@ -41,7 +43,7 @@ namespace pg {
     SettingVar& set(const T& var) {
       bool update_var = true; // Whether or not we end up updating the variable
       for (auto& func: callbacks) {
-        update_var &= static_cast<bool>(func(var));
+        update_var = update_var && static_cast<bool>(func(var));
       }
       if (update_var) setting = var;
       return *this;
@@ -71,9 +73,9 @@ namespace pg {
     }
 
     /// Adds a callback upon variable being set
-    SettingVar& onModify(callbackFunc func) {
-      callbacks.push_back(func);
-      return *this;
+    SettingVar& onModify(callbackFunc&& func) {
+        callbacks.push_back(std::move(func));
+        return *this;
     }
 
     // Overload for parameterless functions returning void (automatically updates the variable)

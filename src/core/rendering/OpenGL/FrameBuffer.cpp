@@ -1,10 +1,9 @@
 #include "core/rendering/OpenGL/FrameBuffer.hpp"
 #include <utility>
 
-#include "SDL3/SDL_opengl.h"
-#include "core/rendering/OpenGL/PVertex.hpp"
+#include "core/rendering/OpenGL/vertices/PointVertex.hpp"
 #include "core/rendering/OpenGL/VBuffer.hpp"
-#include "errors/error-structs/OpenGL/GLFramebufferErrors.hpp"
+#include "err-types/OpenGL/GLFramebufferErrors.hpp"
 #include "toolkit/apidef.h"
 
 namespace pg {

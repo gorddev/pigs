@@ -48,16 +48,16 @@ pg::mem::bytes pg::mem::get_executable_size() {
     }
 #elif defined(__APPLE__)
     else if constexpr(platform::apple) {
-        char path[PATH_MAX];
+        char path[PATH_MAX_B];
         uint32_t size = sizeof(path);
         if (_NSGetExecutablePath(path, &size) != 0) return {0};
         return {std::filesystem::file_size(path)};
     }
 #elif defined(__linux__)
     else if constexpr(platform::linux) {
-        char path[PATH_MAX];
-        ssize_t count = readlink("/proc/self/exe", path, PATH_MAX);
-        if (count <= 0 || count >= PATH_MAX) return 0;
+        char path[PATH_MAX_B];
+        ssize_t count = readlink("/proc/self/exe", path, PATH_MAX_B);
+        if (count <= 0 || count >= PATH_MAX_B) return 0;
         path[count] = '\0';
         return std::filesystem::file_size(path);
     }
@@ -193,7 +193,7 @@ pg::mem::bytes pg::mem::get_system_memory_available() {
     return 0;
 
     #elif defined(__EMSCRIPTEN__)
-    return static_cast<std::size_t>(emscripten_get_heap_max() - emscripten_get_heap_size());
+    return pg::mem::bytes{static_cast<std::size_t>(emscripten_get_heap_max() - emscripten_get_heap_size())};
 
     #else
     return 0;

@@ -1,4 +1,4 @@
-#include "errors/Error.hpp"
+#include <core/errors/Error.hpp>
 
 
 struct MyErr1 {
@@ -35,8 +35,6 @@ pg::expected<int, MyErr1, MyErr2> new_ret() {
   PG_ReturnIfUErr(err)
   return 3;
 }
-
-#include <iostream>
 
 int main() {
 

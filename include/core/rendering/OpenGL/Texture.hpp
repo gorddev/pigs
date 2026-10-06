@@ -1,12 +1,11 @@
 #pragma once
 
-#include <expected>
 #include <core/rendering/RenderingSettings.hpp>
 #include <toolkit/apidef.h>
 
-#include "errors/error-structs/OpenGL/GenericGLError.hpp"
-#include "errors/error-structs/OpenGL/GLTextureErrors.hpp"
-#include "errors/unwrap.hpp"
+#include <core/errors/err-types/OpenGL/GenericGLError.hpp>
+#include <core/errors/err-types/OpenGL/GLTextureErrors.hpp>
+#include <core/errors/unwrap.hpp>
 
 /* Created by Gordie Novak on 3/11/26.
  * Purpose:
@@ -48,14 +47,15 @@ namespace pg {
           err::GenericOpenGLError,
           err::GLTexParameterInitFailure,
           err::GLTexGenerationFailure>
-        make2D(
+          make2D(
             const void* pixels,
-            uint32_t w,
-            uint32_t h,
-            ScaleMode scaleMode,
-            GLuint texFormat = GL_RGBA, //< GL Macro for rgba
-            GLuint sizeofPixel = GL_UNSIGNED_BYTE
-        ) noexcept;
+            const uint32_t w,
+            const uint32_t h,
+            const ScaleMode scaleMode,
+            const GLenum internalFormat = GL_RGBA8, // e.g., GL_R8
+            const GLenum pixelFormat = GL_RGBA,    // e.g., GL_RED
+            const GLenum pixelType = GL_UNSIGNED_BYTE)      // e.g., GL_UNSIGNED_BYTE
+          noexcept;
 
 
         /** @param pixels Raw pixels representing the image
@@ -84,6 +84,25 @@ namespace pg {
             GLuint sizeofPixel = GL_UNSIGNED_BYTE
         ) noexcept;
 
+
+        //TODO: Write definition
+        static optional_err<
+        	err::GLTexGenerationFailure>
+        overwrite(
+        	const void* pixels,
+         	u32 start_x, u32 start_y,
+          u32 end_x, u32 end_y,
+          const GLenum pixelFormat = GL_RGBA,
+          const GLenum pixelType = GL_UNSIGNED_BYTE
+        );
+
+        optional_err<
+        	err::GLTexGenerationFailure>
+        overwrite(
+        	const void* pixels,
+          const GLenum pixelFormat = GL_RGBA,
+          const GLenum pixelType = GL_UNSIGNED_BYTE
+        );
 
         Texture& glBind(GLuint textureSlot);
 

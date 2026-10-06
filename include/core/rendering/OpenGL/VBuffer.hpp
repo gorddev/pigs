@@ -1,14 +1,13 @@
 #pragma once
 
-#include <ostream>
-
-#include "PVertex.hpp"
-#include "errors/Error.hpp"
-#include "errors/error-structs/OpenGL/GLVertexBufferErrors.hpp"
-#include "toolkit/apidef.h"
+#include <toolkit/apidef.h>
+#include "vertices/Is_Vertex.hpp"
+#include "vertices/Vertex.hpp"
+#include <core/errors/Error.hpp>
+#include <core/errors/err-types/OpenGL/GLVertexBufferErrors.hpp>
 #include <core/errors/unwrap.hpp>
-#include <span>
 #include <glm/mat4x4.hpp>
+#include <span>
 
 // Created by Gordie Novak on 2/17/26.
 
@@ -20,64 +19,75 @@ typedef uint32_t GLuint; //< typedef so we can use w/o includes.
 
 namespace pg {
 
-    /// A vertex buffer is an internal engine object
-    /// that stores internal vertex and rendering information
-    /// for openGL rendering.
-    template<typename Vertex_t = Vertex>
-        requires(Is_Vertex<Vertex_t>)
-    struct VBuffer {
-    private:
-        GLuint vao;     ///< Vertex Array handle
-        GLuint vbo;     ///< Vertex Buffer handle
-        GLuint mbo;     ///< Matrix buffer handle
-        GLuint cbo;     ///< Color buffer handle.
-        uint32_t vertexCount;  ///< Number of indices
+struct Vertex;
 
-    public:
+/// A vertex buffer is an internal engine object
+/// that stores internal vertex and rendering information
+/// for openGL rendering.
+template <typename Vertex_t = Vertex>
+  requires(Is_Vertex<Vertex_t>)
+struct VBuffer {
+private:
+  GLuint vao;           ///< Vertex Array handle
+  GLuint vbo;           ///< Vertex Buffer handle
+  GLuint mbo;           ///< Matrix buffer handle
+  GLuint cbo;           ///< Color buffer handle.
+  uint32_t vertexCount; ///< Number of indices
 
-    /* ******************* Constructors *********************** */
+  using value_type = Vertex_t;
 
-        VBuffer() = default;
-        ~VBuffer();
+public:
+  /* ******************* Constructors *********************** */
 
-        VBuffer(const VBuffer& other)               = delete;
-        VBuffer& operator=(const VBuffer& other)    = delete;
+  VBuffer() = default;
+  ~VBuffer();
 
-        VBuffer(VBuffer&& other) noexcept;
-        VBuffer& operator=(VBuffer&& other) noexcept;
+  VBuffer(const VBuffer &other) = delete;
+  VBuffer &operator=(const VBuffer &other) = delete;
 
-    /* **************************************************************************** */
+  VBuffer(VBuffer &&other) noexcept;
+  VBuffer &operator=(VBuffer &&other) noexcept;
 
-        /** Makes a VertexBuffer with OpenGL commands
-         * @param vertices An array of vertices to upload
-         * @param numVertices The number of vertices in the array
-         * @return A properly initialized @code VertexBuffer@endcode object.
-         */
-        [[nodiscard]] static VBuffer make(const Vertex_t vertices[], size_t numVertices);
+  /* ****************************************************************************
+   */
 
-    /* **************************************************************************** */
+  /** Makes a VertexBuffer with OpenGL commands
+   * @param vertices An array of vertices to upload
+   * @param numVertices The number of vertices in the array
+   * @return A properly initialized @code VertexBuffer@endcode object.
+   */
+  [[nodiscard]] static VBuffer make(const Vertex_t vertices[],
+                                    size_t numVertices);
 
-        /** Generates a matrix VBO for a specific vertex buffer object.
-         * @param buffer The VertexBuffer you want to attach this upload to
-         * @param shaderLoc The location in the shader you want to upload the data to. Must be divisible by 4.
-         * @return An optional GLuint: exists if creation was successful
-         * @warning shaderLoc must be divisible by four. */
-        [[nodiscard]] optional_err<err::GLMatrixBufferInvalidShaderLoc>
-        	genMatrixBuffer(size_t shaderLoc);
-        void updateMatrixBuffer(std::span<const glm::mat4>);
+  /* **************************************************************************** */
 
-        [[nodiscard]] optional_err<err::GLColorBufferInvalidShaderLoc>
-        	genColorVBO(size_t shaderLoc);
-        void updateColorBuffer(std::span<const vec4> colors);
+  /** Generates a matrix VBO for a specific vertex buffer object.
+   * @param buffer The VertexBuffer you want to attach this upload to
+   * @param shaderLoc The location in the shader you want to upload the data to.
+   * Must be divisible by 4.
+   * @return An optional GLuint: exists if creation was successful
+   * @warning shaderLoc must be divisible by four. */
+  [[nodiscard]] optional_err<err::GLMatrixBufferInvalidShaderLoc>
+  genMatrixBuffer(size_t shaderLoc);
+  void updateMatrixBuffer(std::span<const glm::mat4>);
 
-        VBuffer& glBind();
-        VBuffer& glDraw();
-        VBuffer& glUnbind();
-        VBuffer& glBindVBO();
+  /*
+  [[nodiscard]] optional_err<err::GLColorBufferInvalidShaderLoc>
+          genColorVBO(size_t shaderLoc);
+  void updateColorBuffer(std::span<const vec4> colors);
+  */
+  VBuffer &glBind();
+  VBuffer &glDraw();
+  VBuffer &glUnbind();
+  VBuffer &glBindVBO();
 
-    };
+  /* **************************************************************************** */
 
-    VBuffer() -> VBuffer<>;
+  u32 size();
 
-    #include "VBuffer.inl"
-}
+};
+
+VBuffer() -> VBuffer<>;
+
+#include "VBuffer.inl"
+} // namespace pg

@@ -1,4 +1,4 @@
-#include "Mouse.hpp"
+#include <core/Mouse.hpp>
 
 namespace pg {
     Mouse::Mouse() { updateWithSDL(); }

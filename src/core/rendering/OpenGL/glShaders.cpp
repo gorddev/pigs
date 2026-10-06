@@ -1,21 +1,21 @@
 #include "core/rendering/OpenGL/glShaders.hpp"
+
+//std
+#include <cstring>
+
+
 // gordie lib
-#include <core/filesystem/path.hpp>
 #include <toolkit/apidef.h>
-#include <core/errors/unwrap.hpp>
+#include <core/filesystem/path.hpp>
+#include <core/rendering/shaders/universal/UniversalUniforms.hpp>
+#include <core/filesystem/dumpFile.hpp>
 
-// standard lib
-#include <vector>
-#include <fstream>
-#include <iostream>
-#include <sstream>
 
-#include "errors/Error.hpp"
-#include "errors/error-structs/OpenGL/GLShaderErrors.hpp"
-#include "errors/error-structs/files/FileNotExistsError.hpp"
-#include "errors/error-structs/files/FileNotOpened.hpp"
-#include "rendering/shaders/universal/UniversalUniforms.hpp"
-#include "toolkit/serialization/concepts/is_specialization_of.hpp"
+// errors
+#include <unwrap.hpp>
+#include <err-types/OpenGL/GLShaderErrors.hpp>
+#include <err-types/files/FileErrors.hpp>
+
 
 using namespace pg;
 
@@ -33,6 +33,7 @@ compileShader(std::string_view data, GLenum shaderType) {
   glCompileShader(shader);
   // Then we check whether the shader compilation was successful or not.
   GLint success;
+
   glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
   if (!success) {
       GLint logLen = 0;
@@ -62,15 +63,9 @@ compileShaderFromPath(GLenum shaderType, const path& pathToShader) {
     if (!std::filesystem::is_regular_file(pathToShader))
     	return PG_UErrNew(err::FileNotExists, .file_name = pathToShader.c_str());
     // load the file
-    std::ifstream file(pathToShader);
-    if (!file)
-    	return PG_UErrNew(err::FileNotOpened, .file_path = pathToShader.c_str());
-    std::stringstream ss;
-    // load the entire file into the string stream.
-    ss << file.rdbuf();
-    file.close();
-
-    std::string file_str = ss.str();
+    auto fileExpected = pg::dumpFile(pathToShader);
+    PG_ReturnIfUErr(fileExpected);
+    std::string file_str = std::move(*fileExpected);
     replaceGLVersionString(file_str);
 
     auto opt = compileShader(file_str, shaderType);

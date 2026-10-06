@@ -1,7 +1,7 @@
 #pragma once
 #include <functional>
 
-#include "callbacks/AppStatus.hpp"
+#include <core/callbacks/AppStatus.hpp>
 #include <core/callbacks/SDL_ForwardDeclaration.hpp>
 
 /* Created by Gordie Novak on 8/22/26.
@@ -10,7 +10,7 @@
 
 union SDL_Event;
 
-namespace pg { class Engine; }
+namespace pg { class Engine; [[noreturn]] void panic();}
 
 
 namespace pg::config {
@@ -25,6 +25,7 @@ namespace pg::config {
         friend SDL_AppResult (::SDL_AppIterate(void*));
         friend SDL_AppResult (::SDL_AppEvent(void*, SDL_Event*));
         friend void          (::SDL_AppQuit(void*, SDL_AppResult));
+        friend void          (pg::panic());
 
         template<typename... Args>
         auto operator()(Args...args) {

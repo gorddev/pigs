@@ -4,8 +4,8 @@
 #include <filesystem>
 #include <stb_image/stb_image.h>
 
-#include <core/errors/error-structs/files/FileNotExistsError.hpp>
-#include <core/errors/error-structs/library/STBImageError.hpp>
+#include <err-types/files/FileErrors.hpp>
+#include <err-types/library/STBImageError.hpp>
 #include <core/filesystem/path.hpp>
 
 // Created by Gordie Novak on 2/27/26.

@@ -1,16 +1,19 @@
 #pragma once
+// std
 #include <expected>
 #include <string>
+#include <string_view>
+// external
+#include <stb_image/stb_image.h>
+// includes
 #include <toolkit/containers/map_vector.hpp>
 #include <core/rendering/OpenGL/Texture.hpp>
-#include <rendering/textures/tex_id.hpp>
-#include <string_view>
+#include <core/rendering/textures/tex_id.hpp>
+// errors
+#include <core/errors/err-types/engine/TextureRegisterErrors.hpp>
+#include <core/errors/err-types/files/FileErrors.hpp>
+#include <core/errors/err-types/library/STBImageError.hpp>
 
-#include "Image.hpp"
-#include "errors/error-structs/engine/TextureRegisterErrors.hpp"
-#include "errors/unwrap.hpp"
-
-#include "stb_image/stb_image.h"
 
 /* Created by Gordie Novak on 5/29/26.
  * Purpose:

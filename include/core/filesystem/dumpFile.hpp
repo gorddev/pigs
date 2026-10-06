@@ -10,9 +10,8 @@
 #include <fstream>
 #include <core/filesystem/path.hpp>
 
-#include <errors/Error.hpp>
-#include "errors/error-structs/files/FileNotExistsError.hpp"
-#include "errors/error-structs/files/FileNotOpened.hpp"
+#include <core/errors/Error.hpp>
+#include <core/errors/err-types/files/FileErrors.hpp>
 
 namespace pg {
 

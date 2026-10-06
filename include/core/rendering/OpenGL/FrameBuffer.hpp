@@ -3,9 +3,9 @@
 #include <optional>
 
 #include "Texture.hpp"
-#include "errors/error-structs/OpenGL/GLFramebufferErrors.hpp"
-#include "errors/error-structs/OpenGL/GLTextureErrors.hpp"
-#include "errors/error-structs/OpenGL/GenericGLError.hpp"
+#include <core/errors/err-types/OpenGL/GLFramebufferErrors.hpp>
+#include <core/errors/err-types/OpenGL/GLTextureErrors.hpp>
+#include <core/errors/err-types/OpenGL/GenericGLError.hpp>
 #include <toolkit/types/rect.hpp>
 #include <toolkit/types/frect.hpp>
 

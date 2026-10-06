@@ -29,6 +29,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/pigs.dir/src/core/rendering/shaders/universal/UniversalUniforms.cpp.o.d"
   "CMakeFiles/pigs.dir/src/core/rendering/textures/TextureRegister.cpp.o"
   "CMakeFiles/pigs.dir/src/core/rendering/textures/TextureRegister.cpp.o.d"
+  "CMakeFiles/pigs.dir/src/core/scripting/Tokenizer.cpp.o"
+  "CMakeFiles/pigs.dir/src/core/scripting/Tokenizer.cpp.o.d"
   "CMakeFiles/pigs.dir/src/core/vitals/Exec.cpp.o"
   "CMakeFiles/pigs.dir/src/core/vitals/Exec.cpp.o.d"
   "CMakeFiles/pigs.dir/src/toolkit/platform/executable_dir.cpp.o"

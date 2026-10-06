@@ -15,9 +15,6 @@
 /Users/gordie/Developer/lib/PIGS/build/external/miniaudio/CMakeFiles/miniaudio.dir
 /Users/gordie/Developer/lib/PIGS/build/external/miniaudio/CMakeFiles/edit_cache.dir
 /Users/gordie/Developer/lib/PIGS/build/external/miniaudio/CMakeFiles/rebuild_cache.dir
-/Users/gordie/Developer/lib/PIGS/build/tests/CMakeFiles/test_mem.dir
-/Users/gordie/Developer/lib/PIGS/build/tests/CMakeFiles/test_framebuffer.dir
-/Users/gordie/Developer/lib/PIGS/build/tests/CMakeFiles/test_scripting.dir
-/Users/gordie/Developer/lib/PIGS/build/tests/CMakeFiles/test_errors.dir
+/Users/gordie/Developer/lib/PIGS/build/tests/CMakeFiles/test_collin.dir
 /Users/gordie/Developer/lib/PIGS/build/tests/CMakeFiles/edit_cache.dir
 /Users/gordie/Developer/lib/PIGS/build/tests/CMakeFiles/rebuild_cache.dir

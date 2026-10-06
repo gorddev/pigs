@@ -1,7 +1,7 @@
 #pragma once
 
-#include "errors/Error.hpp"
-#include "errors/unwrap.hpp"
+#include "Error.hpp"
+#include "unwrap.hpp"
 #include "toolkit/concepts/assignment_type.hpp"
 #include "toolkit/serialization/enumToString.hpp"
 #include "toolkit/serialization/serialdef.hpp"
@@ -11,7 +11,6 @@
 #include <functional>
 #include <string>
 #include <vector>
-#include <iostream>
 
 #include "script_conversion.hpp"
 

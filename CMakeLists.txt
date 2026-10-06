@@ -9,7 +9,6 @@ option(PIGS_OpenGL_Core "Whether Core OpenGL lib is enabled" ON)
 # SDL3
 ###################
 
-
 set(SDL_AUDIO OFF          CACHE BOOL "" FORCE)
 set(SDL_CAMERA OFF         CACHE BOOL "" FORCE)
 set(SDL_TESTS OFF          CACHE BOOL "" FORCE)
@@ -25,7 +24,7 @@ set(SDL_ATOMIC OFF         CACHE BOOL "" FORCE)
 set(SDL_STATIC ON          CACHE BOOL "" FORCE)
 set(SDL_SHARED OFF         CACHE BOOL "" FORCE)
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/SDL3)#]]
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/SDL3) #]]
 
 ####################
 # ImGUI below.
@@ -46,7 +45,7 @@ target_include_directories(ImGui PRIVATE
 )
 
 target_compile_options(ImGui PRIVATE
-    -D__STDC_WANT_LIB_EXT1__=1
+  -D__STDC_WANT_LIB_EXT1__=1
 )
 
 target_link_libraries(ImGui PRIVATE
@@ -59,31 +58,31 @@ target_link_libraries(ImGui PRIVATE
 #########################
 
 if (EMSCRIPTEN)
-    set(PIGS_OpenGL_Core OFF)
-    message("Emscripten enabled")
-    set(CMAKE_EXECUTABLE_SUFFIX ".html")
+  set(PIGS_OpenGL_Core OFF)
+  message("Emscripten enabled")
+  set(CMAKE_EXECUTABLE_SUFFIX ".html")
 endif()
 
 # enables/disables open gl
 if (PIGS_OpenGL_Core)
-    message("pigs: Standard OpenGL 4.1 enabled. OpenGL_ES set to OFF.")
+  message("pigs: Standard OpenGL 4.1 enabled. OpenGL_ES set to OFF.")
 else()
-    message("pigs: OpenGL_ES 3.0 enabled. Open_GL Core 4.1 disabled.")
+  message("pigs: OpenGL_ES 3.0 enabled. Open_GL Core 4.1 disabled.")
 endif()
 
 
 if(PIGS_OpenGL_Core)
-    add_library(GLAD STATIC
+  add_library(GLAD STATIC
         ${CMAKE_CURRENT_SOURCE_DIR}/external/glad4/glad/glad.c
     )
-    target_include_directories(GLAD PRIVATE
+  target_include_directories(GLAD PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/external/glad4
     )
 else()
-    add_library(GLAD STATIC
+  add_library(GLAD STATIC
         ${CMAKE_CURRENT_SOURCE_DIR}/external/glad_es/glad/glad.c
     )
-    target_include_directories(GLAD PRIVATE
+  target_include_directories(GLAD PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/external/glad_es
     )
 endif()
@@ -112,7 +111,7 @@ target_compile_options(stb_image PRIVATE
 set(GLM_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLM_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/glm)#]]
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/glm) #]]
 
 #########################
 # Miniaudio compilation
@@ -148,6 +147,8 @@ add_library(pigs
 
     src/core/errors/panic.cpp
 
+    src/core/scripting/Tokenizer.cpp
+
     ##### src/toolkit
     src/core/rendering/OpenGL/Texture.cpp
     src/core/rendering/OpenGL/FrameBuffer.cpp
@@ -160,11 +161,13 @@ add_library(pigs
     src/toolkit/platform/memory/format_memory.cpp
 )
 
+target_include_directories(pigs PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/core/errors
+)
+
 target_include_directories(pigs PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/external
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/imgui
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/core
 )
 
 target_link_libraries(pigs PUBLIC
@@ -191,31 +194,38 @@ target_compile_options(pigs PUBLIC
     -freflection
     -fno-exceptions
     -fno-rtti
+    -fsanitize=address,undefined
+    -fno-omit-frame-pointer
+    -Wno-unused-command-line-argument
+    -Wno-unknown-warning-option
+    -std=c++26
 )
 
 target_link_options(pigs PRIVATE
     -ffast-math
     -fno-exceptions
     -fno-rtti
+    -std=c++26
 )
 
-target_link_options(pigs PRIVATE
+target_link_options(pigs PUBLIC
+-fsanitize=address,undefined
 )
 
 if(PIGS_OpenGL_Core)
-    message("pigs: Including glad4 directories")
-    target_include_directories(pigs PUBLIC
+  message("pigs: Including glad4 directories")
+  target_include_directories(pigs PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/external/glad4
     )
-    target_compile_options(pigs PUBLIC
+  target_compile_options(pigs PUBLIC
         -DPIGS_OpenGL_Core
     )
 else()
-    message("pigs: Including glades directories")
-    target_include_directories(pigs PUBLIC
+  message("pigs: Including glades directories")
+  target_include_directories(pigs PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/external/glad_es
     )
-    target_compile_options(pigs PUBLIC
+  target_compile_options(pigs PUBLIC
         -DPIGS_OpenGL_ES
     )
 endif ()

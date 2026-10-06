@@ -1,9 +1,9 @@
+#include <core/Window.hpp>
+
 #include <SDL3/SDL.h>
 
-#include "Window.hpp"
-
 #include "../../include/toolkit/apidef.h"
-#include <core/errors/unwrap.hpp>
+#include <unwrap.hpp>
 
 // created by gordie feb 16th. implementation for window
 

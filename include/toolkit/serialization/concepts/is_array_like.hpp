@@ -3,13 +3,13 @@
 #include <concepts>
 
 /* Created by Gordie Novak on 8/11/26.
- * Purpose: 
+ * Purpose:
  */
 
 namespace pg::ser {
 
     template<typename T, auto N>
-    consteval decltype(N) getCArraySize(T (&arr)[N]) {
+    consteval decltype(N) getCArraySize(T (&)[N]) {
         return N;
     }
 

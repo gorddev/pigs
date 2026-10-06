@@ -1,10 +1,11 @@
-#include "errors/error-structs/engine/TextureRegisterErrors.hpp"
-#include "errors/error-structs/library/STBImageError.hpp"
-#include "errors/unwrap.hpp"
-#include "toolkit/serialization/concepts/is_specialization_of.hpp"
-#include <core/rendering/textures/TextureRegister.hpp>
 
-#include <iostream>
+#include <unwrap.hpp>
+#include <core/rendering/OpenGL/Texture.hpp>
+#include <core/rendering/textures/TextureRegister.hpp>
+#include <core/rendering/textures/Image.hpp>
+
+#include <err-types/engine/TextureRegisterErrors.hpp>
+#include <err-types/library/STBImageError.hpp>
 
 using namespace pg;
 expected<tex_id, err::FileNotExists, err::STBImage, err::GenericOpenGLError,
@@ -59,7 +60,7 @@ constexpr u8 tex_default_pixels[16] = {255, 0, 255, 255, 0,   0, 0,   0,
                                        0,   0, 0,   0,   255, 0, 255, 255};
 
 void TextureRegister::init() {
+	auto tex = PG_Unwrap(Texture::make2D(&tex_default_pixels, 2, 2, PG_PIXEL));
   textures.add("_default",
-               PG_Unwrap(Texture::make2D(&tex_default_pixels, 2, 2, PG_PIXEL)));
-  PG_Unwrap(Texture::make2D(&tex_default_pixels, 2, 2, PG_PIXEL));
+              std::move(tex));
 }

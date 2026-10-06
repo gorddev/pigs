@@ -6,7 +6,6 @@ in vec3 vNorm;
 
 out vec4 color;
 
-uniform vec2 myvec;
 uniform sampler2D uTex;
 
 void main()

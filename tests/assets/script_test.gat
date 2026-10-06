@@ -1,2 +1,12 @@
-use Engine
-x = 5;
+use Engine as engine
+
+@print("hello, world")
+
+let x = "str_literal"
+let y = 4.f + 5.f
+let z = 4
+
+y = x + z
+
+
+exit 40.f

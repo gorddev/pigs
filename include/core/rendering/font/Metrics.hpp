@@ -27,7 +27,7 @@ namespace pg {
     inline FontMetrics LoadFontAtlasData(const std::string& jsonPath) {
         std::ifstream file(jsonPath);
         if (!file.is_open()) {
-            throw std::runtime_error("Failed to open atlas JSON file!");
+            std::puts(std::string("Failed to open atlas JSON file!");
         }
 
         json data;

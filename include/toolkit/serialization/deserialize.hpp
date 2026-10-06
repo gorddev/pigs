@@ -9,7 +9,7 @@
 #include "serialize_options.hpp"
 #include "concepts/byte_containers.hpp"
 #include "concepts/is_array_like.hpp"
-#include "errors/Error.hpp"
+#include "Error.hpp"
 
 namespace pg::ser {
 

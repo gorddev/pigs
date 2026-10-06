@@ -28,9 +28,5 @@ namespace pg {
         uint64_t frame = 0;     ///< Current frame number
         float dtf = 0.f;        ///< (Float) time since previous frame.
         float ftime = 0.f;      ///< (Float) total time since engine initialization in milliseconds.
-
-        friend class TimeUpdater;
-
-
     };
 }

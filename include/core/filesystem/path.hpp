@@ -87,7 +87,7 @@ namespace pg {
         [[nodiscard]] path parent() const {
             for (int i = view.length()-1; i >= 1; i--) {
                 if (view[i]=='/')
-                    return path(view.subview(0, i));
+                    return path(view.substr(0, i));
             }
             return path(".");
         }

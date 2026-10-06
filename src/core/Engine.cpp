@@ -39,7 +39,7 @@ void Engine::on_end_loop() {
 }
 
 void Engine::init(int argc, char* argv[]) {
-    window = Window::make("Pigs", {300, 300}, WindowHighDPI);
+    window = Window::make("PIGS Instance", {300, 300}, WindowHighDPI);
     // Initialize each respective subsystem
     this->textures.init();
     this->shaders.init();
@@ -48,7 +48,6 @@ void Engine::init(int argc, char* argv[]) {
     // Set up file & asset management
     std::filesystem::current_path(platform::getExecutableDir());
     stbi_set_flip_vertically_on_load(true);
-
 
     // Set the initialization status to be true.
     engine_status.initialized = true;

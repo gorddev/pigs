@@ -4,7 +4,7 @@
 #include <toolkit/apidef.h>
 
 #include "Metrics.hpp"
-#include "rendering/OpenGL/VBuffer.hpp"
+#include "core/rendering/OpenGL/VBuffer.hpp"
 
 /* Created by Gordie Novak on 8/20/26.
  * Purpose:

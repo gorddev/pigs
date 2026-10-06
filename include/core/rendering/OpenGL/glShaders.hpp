@@ -4,10 +4,9 @@
 #include <optional>
 #include <utility>
 
-#include <errors/unwrap.hpp>
-#include <errors/error-structs/OpenGL/GLShaderErrors.hpp>
-#include <errors/error-structs/files/FileNotOpened.hpp>
-#include <errors/error-structs/files/FileNotExistsError.hpp>
+#include <core/errors/unwrap.hpp>
+#include <core/errors/err-types/OpenGL/GLShaderErrors.hpp>
+#include <core/errors/err-types/files/FileErrors.hpp>
 
 
 

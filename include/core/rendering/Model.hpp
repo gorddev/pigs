@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Transform.hpp"
-#include "errors/pig_err.hpp"
+#include "pig_err.hpp"
 #include "shaders/ShaderRef.hpp"
 #include "textures/tex_id.hpp"
 #include "core/rendering/OpenGL/VBuffer.hpp"

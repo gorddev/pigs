@@ -1,9 +1,9 @@
 #pragma once
 #include <unordered_map>
-#include <variant>
 #include <vector>
 #include <optional>
 #include <algorithm>
+
 
 // made by gordie novak, feb 22nd, 2026
 
@@ -64,14 +64,25 @@ namespace pg {
                     std::construct_at(vector.data() + index, std::move(element));
                     return index;
                 }
-                pair_map[key] = vector.size();
+
+                auto index = vector.size();
+
+                [[maybe_unused]] auto [it, inserted] = pair_map.emplace(key, index);
+
+                pair_map[key] = index;
+
                 vector.emplace_back(std::move(element));
+
                 return vector.size() - 1;
             }
+
             auto index = destroyed.back();
             destroyed.pop_back();
+
             pair_map[key] = index;
+
             std::construct_at(vector.data() + index, std::move(element));
+
             return index;
         }
         /// Removes an element with the given key.

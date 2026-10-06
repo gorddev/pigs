@@ -5,9 +5,9 @@
 #include <core/Audio.hpp>
 #include <ranges>
 
-#include "Config.hpp"
-#include "errors/Error.hpp"
-#include "errors/error-structs/library/miniaudioError.hpp"
+#include <core/Config.hpp>
+#include <Error.hpp>
+#include <err-types/library/miniaudioError.hpp>
 
 using namespace pg;
 

@@ -1,10 +1,10 @@
 #pragma once
 
 /* Created by Gordie Novak on 3/15/26.
- * Purpose: 
+ * Purpose:
  */
 
-#include "rendering/RenderingSettings.hpp"
+#include "core/rendering/RenderingSettings.hpp"
 #include "../toolkit/types/dim2.hpp"
 #include "../toolkit/types/vec.hpp"
 

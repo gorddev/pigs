@@ -14,14 +14,14 @@
 namespace fs = std::filesystem;
 
 std::string pg::platform::getExecutableDir() {
-	constexpr auto PATH_MAX = 1024;
+	[[maybe_unused]] constexpr uint64_t PATH_MAX_B = 1024;
 #ifdef _WIN32
-    wchar_t buffer[PATH_MAX];
+    wchar_t buffer[PATH_MAX_B];
     GetModuleFileNameW(NULL, buffer, MAX_PATH);
     return fs::path(buffer).parent_path().string();
 
 #elif defined(__linux__)
-    char buffer[PATH_MAX];
+    char buffer[PATH_MAX_B];
     ssize_t len = readlink("/proc/self/exe", buffer, sizeof(buffer) - 1);
     if (len != -1) {
         buffer[len] = '\0';
@@ -29,7 +29,7 @@ std::string pg::platform::getExecutableDir() {
     }
 
 #elif defined(__APPLE__)
-    char buffer[PATH_MAX];
+    char buffer[PATH_MAX_B];
     uint32_t size = sizeof(buffer);
     if (_NSGetExecutablePath(buffer, &size) == 0) {
         return fs::canonical(fs::path(buffer)).parent_path().string();

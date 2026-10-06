@@ -1,11 +1,7 @@
 #pragma once
 #include <glm/mat4x4.hpp>
-#include <meta>
 #include <toolkit/intdef.h>
-#include <string>
 #include <string_view>
-#include <array>
-#include <algorithm>
 
 /* Created by Gordie Novak on 8/20/26.
  * Purpose:
@@ -31,16 +27,6 @@ namespace pg {
         void updateUniforms(const Engine& e);
     };
 
-    #include "GenerateUniversalGLSL.inl"
-
-    namespace internal_constants {
-        static constexpr auto universal_uniforms_arr =
-            generateGLSLBlock();
-    }
-    constexpr const char* universal_uniforms =
-        internal_constants::universal_uniforms_arr.data();
-
-
-
+    extern std::string_view universal_uniforms;
 
 }

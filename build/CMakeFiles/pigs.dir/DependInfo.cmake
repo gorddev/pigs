@@ -23,6 +23,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/gordie/Developer/lib/PIGS/src/core/rendering/shaders/ShaderManager.cpp" "CMakeFiles/pigs.dir/src/core/rendering/shaders/ShaderManager.cpp.o" "gcc" "CMakeFiles/pigs.dir/src/core/rendering/shaders/ShaderManager.cpp.o.d"
   "/Users/gordie/Developer/lib/PIGS/src/core/rendering/shaders/universal/UniversalUniforms.cpp" "CMakeFiles/pigs.dir/src/core/rendering/shaders/universal/UniversalUniforms.cpp.o" "gcc" "CMakeFiles/pigs.dir/src/core/rendering/shaders/universal/UniversalUniforms.cpp.o.d"
   "/Users/gordie/Developer/lib/PIGS/src/core/rendering/textures/TextureRegister.cpp" "CMakeFiles/pigs.dir/src/core/rendering/textures/TextureRegister.cpp.o" "gcc" "CMakeFiles/pigs.dir/src/core/rendering/textures/TextureRegister.cpp.o.d"
+  "/Users/gordie/Developer/lib/PIGS/src/core/scripting/Tokenizer.cpp" "CMakeFiles/pigs.dir/src/core/scripting/Tokenizer.cpp.o" "gcc" "CMakeFiles/pigs.dir/src/core/scripting/Tokenizer.cpp.o.d"
   "/Users/gordie/Developer/lib/PIGS/src/core/vitals/Exec.cpp" "CMakeFiles/pigs.dir/src/core/vitals/Exec.cpp.o" "gcc" "CMakeFiles/pigs.dir/src/core/vitals/Exec.cpp.o.d"
   "/Users/gordie/Developer/lib/PIGS/src/toolkit/platform/executable_dir.cpp" "CMakeFiles/pigs.dir/src/toolkit/platform/executable_dir.cpp.o" "gcc" "CMakeFiles/pigs.dir/src/toolkit/platform/executable_dir.cpp.o.d"
   "/Users/gordie/Developer/lib/PIGS/src/toolkit/platform/memory/format_memory.cpp" "CMakeFiles/pigs.dir/src/toolkit/platform/memory/format_memory.cpp.o" "gcc" "CMakeFiles/pigs.dir/src/toolkit/platform/memory/format_memory.cpp.o.d"

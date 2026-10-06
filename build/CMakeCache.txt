@@ -27,8 +27,8 @@ CMAKE_BUILD_TYPE:STRING=
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
-//No help, variable specified on the command line.
-CMAKE_CXX_COMPILER:UNINITIALIZED=/opt/homebrew/bin/gcc
+//CXX compiler
+CMAKE_CXX_COMPILER:STRING=/opt/homebrew/bin/gcc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -54,7 +54,7 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //C compiler
-CMAKE_C_COMPILER:FILEPATH=/usr/bin/cc
+CMAKE_C_COMPILER:STRING=/usr/bin/cc
 
 //Flags used by the C compiler during all build types.
 CMAKE_C_FLAGS:STRING=
@@ -180,6 +180,9 @@ CMAKE_NM:FILEPATH=/usr/bin/nm
 
 //Path to a program.
 CMAKE_OBJCOPY:FILEPATH=CMAKE_OBJCOPY-NOTFOUND
+
+//OBJC compiler
+CMAKE_OBJC_COMPILER:FILEPATH=/usr/bin/clang
 
 //Flags used by the Objective-C compiler during all build types.
 CMAKE_OBJC_FLAGS:STRING=
@@ -669,9 +672,9 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/Users/gordie/Developer/lib/PIGS/build
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=4
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=3
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=4
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=2
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=3
 //ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
 CMAKE_COLOR_MAKEFILE-ADVANCED:INTERNAL=1
 //Path to CMake executable.
@@ -708,10 +711,15 @@ CMAKE_C_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_C_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS_RELWITHDEBINFO
 CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//Set initial state for CMake diagnostics; used to persist state
+// set by command-line options across invocations.
+CMAKE_DIAGNOSTIC_INIT:INTERNAL=CMD_AUTHOR=WARN;CMD_DEPRECATED=WARN;CMD_EXPERIMENTAL=WARN;CMD_INSTALL_ABSOLUTE_DESTINATION=IGNORE;CMD_POLICY=WARN;CMD_UNINITIALIZED=IGNORE;CMD_UNUSED_CLI=WARN
 //ADVANCED property for variable: CMAKE_DLLTOOL
 CMAKE_DLLTOOL-ADVANCED:INTERNAL=1
 //Path to cache edit program executable.
 CMAKE_EDIT_COMMAND:INTERNAL=/opt/homebrew/bin/ccmake
+//Deprecated.  Use -W[no-]error=deprecated instead.
+CMAKE_ERROR_DEPRECATED:INTERNAL=OFF
 //Executable file format
 CMAKE_EXECUTABLE_FORMAT:INTERNAL=MACHO
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS
@@ -795,6 +803,8 @@ CMAKE_NM-ADVANCED:INTERNAL=1
 CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_OBJC_COMPILER
+CMAKE_OBJC_COMPILER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJC_FLAGS
 CMAKE_OBJC_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJC_FLAGS_DEBUG
@@ -847,6 +857,8 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Deprecated.  Use -W[no-]deprecated instead.
+CMAKE_WARN_DEPRECATED:INTERNAL=ON
 //Test COMPILER_HAS_SEM_TIMEDWAIT
 COMPILER_HAS_SEM_TIMEDWAIT:INTERNAL=
 //Test COMPILER_SUPPORTS_ARMNEON
@@ -862,7 +874,7 @@ COMPILER_SUPPORTS_WNO_DEPRECATED_DECLARATIONS:INTERNAL=1
 //Test COMPILER_SUPPORTS_WNO_ERROR_DEPRECATED_DECLARATIONS
 COMPILER_SUPPORTS_WNO_ERROR_DEPRECATED_DECLARATIONS:INTERNAL=1
 //Details about finding PkgConfig
-FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/opt/homebrew/bin/pkg-config][v2.5.1()]
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/opt/homebrew/bin/pkg-config][v3.0.7()]
 //Have include alloca.h
 HAVE_ALLOCA_H:INTERNAL=1
 //Have symbol dlopen

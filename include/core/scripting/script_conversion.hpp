@@ -1,6 +1,6 @@
 #pragma once
 
-#include "errors/Error.hpp"
+#include "Error.hpp"
 #include "toolkit/serialization/enumToString.hpp"
 #include <toolkit/concepts/has_in_range.hpp>
 #include "toolkit/serialization/serialdef.hpp"
@@ -9,7 +9,6 @@
 #include <limits>
 #include <core/Config.hpp>
 #include <type_traits>
-#include <iostream>
 #include <utility>
 namespace pg::script {
 

@@ -1,12 +1,10 @@
-#include "callbacks/AppStatus.hpp"
-#include "pigs_init.h"
-#include "core/rendering/OpenGL/glShaders.hpp"
+#include <pigs_init.h>
+#include <core/rendering/OpenGL/glShaders.hpp>
 #include "core/rendering/OpenGL/VBuffer.hpp"
 #include "core/filesystem/path.hpp"
+#include <iostream>
 
 #include <core/rendering/shaders/Shader.hpp>
-
-#include <iostream>
 #include "core/rendering/OpenGL/FrameBuffer.hpp"
 
 
@@ -84,21 +82,35 @@ pg::AppStatus loop(pg::Engine& e){
     return pg::APP_CONTINUE;
 }
 
+inline struct mystruct {
+	int x = 4;
+	int y = 5;
+} poop;
+
 pg::AppStatus init(pg::Engine& e) {
   //First set up some defaults for the engine.
   e.config.assets_folder = "../../tests/assets";
   e.config.vsync = false;
+  e.exec.udata = &poop;
+
   // Make sure we don't get a warning about no event/crash functino
   e.config.warn.init = {
   	.no_event_func = false,
-   	.no_quit_func  = false,
    	.no_crash_func = false
   };
+
+  e.onQuit([](pg::Engine&) {
+  	std::cerr << "quit application" << std::endl;
+  });
+
+  e.onCrash([](pg::Engine&) {
+  	std::cerr << "crashed application" << std::endl;
+  });
+
 
   // Set some properties of our window.
   e.window.setResizable(true)
     .setFloatOnTop(true)
-    .setName("my game")
     .setDimensions({800, 800})
     .setPosition({0, 0});
 
@@ -123,7 +135,6 @@ pg::AppStatus init(pg::Engine& e) {
 
   auto s1 = pg::path("std.vert");
   auto s2 = pg::path("std.frag");
-  auto shad = pg::Shader({{s1}}, {{s2}});
   shader = PG_Unwrap(pg::gl::makeShaderProgram({{s1}}, {{s2}}));
 
   e.textures.glBind(tex);

@@ -3,16 +3,16 @@ external/glm/glm/CMakeFiles/glm.dir/detail/glm.cpp.o: \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/dual_quaternion.hpp \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/../glm.hpp \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/../detail/_fixes.hpp \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/cmath \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/requires_hosted.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/aarch64-apple-darwin25/bits/c++config.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/aarch64-apple-darwin25/bits/os_defines.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/aarch64-apple-darwin25/bits/cpu_defines.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/pstl/pstl_config.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/cpp_type_traits.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/version.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/type_traits \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/ext/type_traits.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/cmath \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/requires_hosted.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/aarch64-apple-darwin25/bits/c++config.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/aarch64-apple-darwin25/bits/os_defines.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/aarch64-apple-darwin25/bits/cpu_defines.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/pstl/pstl_config.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/cpp_type_traits.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/version.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/type_traits \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/ext/type_traits.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/math.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/cdefs.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/_symbol_aliasing.h \
@@ -21,7 +21,7 @@ external/glm/glm/CMakeFiles/glm.dir/detail/glm.cpp.o: \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/AvailabilityVersions.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/AvailabilityInternal.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/AvailabilityInternalLegacy.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/std_abs.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/std_abs.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/stdlib.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_stdlib.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_bounds.h \
@@ -60,7 +60,7 @@ external/glm/glm/CMakeFiles/glm.dir/detail/glm.cpp.o: \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/_types/_size_t.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/_types/_uid_t.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/resource.h \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stdint.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stdint.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/stdint.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_types/_uint8_t.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_types/_uint16_t.h \
@@ -88,21 +88,21 @@ external/glm/glm/CMakeFiles/glm.dir/detail/glm.cpp.o: \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_abort.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/_types/_dev_t.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/_types/_mode_t.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/specfun.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stdexcept_throw.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/exception_defines.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/string \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stringfwd.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/memoryfwd.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/char_traits.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/postypes.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/cwchar \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/specfun.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stdexcept_throw.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/exception_defines.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/string \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stringfwd.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/memoryfwd.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/char_traits.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/postypes.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/cwchar \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/wchar.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_wchar.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/_types/_mbstate_t.h \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stdarg.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stdarg.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/stdio.h \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include-fixed/_stdio.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include-fixed/_stdio.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/_types/_va_list.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/stdio.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_printf.h \
@@ -122,115 +122,115 @@ external/glm/glm/CMakeFiles/glm.dir/detail/glm.cpp.o: \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/ctype.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_ctype.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/runetype.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/compare \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/concepts \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stl_construct.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/new \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/exception.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/new_except.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/move.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stl_iterator_base_types.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/iterator_concepts.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/ptr_traits.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/ranges_cmp.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stl_iterator_base_funcs.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/concept_check.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/debug/assertions.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/allocator.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/aarch64-apple-darwin25/bits/c++allocator.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/new_allocator.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/new_throw.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/localefwd.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/aarch64-apple-darwin25/bits/c++locale.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/clocale \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/compare \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/concepts \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stl_construct.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/new \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/exception.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/new_except.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/move.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stl_iterator_base_types.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/iterator_concepts.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/ptr_traits.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/ranges_cmp.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stl_iterator_base_funcs.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/concept_check.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/debug/assertions.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/allocator.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/aarch64-apple-darwin25/bits/c++allocator.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/new_allocator.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/new_throw.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/localefwd.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/aarch64-apple-darwin25/bits/c++locale.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/clocale \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/locale.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_locale.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_locale_posix2008.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_types/_locale_t.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/iosfwd \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/cctype \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/ostream_insert.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/cxxabi_forced.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stl_iterator.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/utility.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/invoke.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stl_function.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/backward/binders.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/ext/numeric_traits.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stdexcept_throwfwd.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stl_algobase.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stl_pair.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/debug/debug.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/predefined_ops.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bit \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/range_access.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/initializer_list \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/erase_if.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/basic_string.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/ext/alloc_traits.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/alloc_traits.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/string_view \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/functional_hash.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/hash_bytes.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/ranges_base.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/max_size_type.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/numbers \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/limits \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/string_view.tcc \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/ranges_algobase.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/ranges_util.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/charconv \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/charconv.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/aarch64-apple-darwin25/bits/error_constants.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/cerrno \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/iosfwd \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/cctype \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/ostream_insert.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/cxxabi_forced.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stl_iterator.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/utility.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/invoke.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stl_function.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/backward/binders.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/ext/numeric_traits.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stdexcept_throwfwd.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stl_algobase.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stl_pair.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/debug/debug.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/predefined_ops.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bit \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/range_access.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/initializer_list \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/erase_if.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/basic_string.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/ext/alloc_traits.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/alloc_traits.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/string_view \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/functional_hash.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/hash_bytes.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/ranges_base.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/max_size_type.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/numbers \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/limits \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/string_view.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/ranges_algobase.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/ranges_util.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/charconv \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/charconv.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/aarch64-apple-darwin25/bits/error_constants.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/cerrno \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/errno.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/errno.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/ext/string_conversions.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/cstdlib \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/cstdio \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/basic_string.tcc \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stdexcept_except.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/exception \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/exception_ptr.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/cxxabi_init_exception.h \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stddef.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/typeinfo \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/nested_exception.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stdexcept_throwdef.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/memory_resource.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/cstddef \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/uses_allocator.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/uses_allocator_args.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/tuple \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/tr1/gamma.tcc \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/tr1/special_function_util.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/tr1/bessel_function.tcc \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/tr1/beta_function.tcc \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/tr1/ell_integral.tcc \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/tr1/exp_integral.tcc \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/tr1/hypergeometric.tcc \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/tr1/legendre_function.tcc \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/tr1/modified_bessel_func.tcc \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/tr1/poly_hermite.tcc \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/tr1/poly_laguerre.tcc \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/tr1/riemann_zeta.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/ext/string_conversions.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/cstdlib \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/cstdio \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/basic_string.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stdexcept_except.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/exception \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/exception_ptr.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/cxxabi_init_exception.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stddef.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/typeinfo \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/nested_exception.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stdexcept_throwdef.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/memory_resource.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/cstddef \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/uses_allocator.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/uses_allocator_args.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/tuple \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/tr1/gamma.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/tr1/special_function_util.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/tr1/bessel_function.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/tr1/beta_function.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/tr1/ell_integral.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/tr1/exp_integral.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/tr1/hypergeometric.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/tr1/legendre_function.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/tr1/modified_bessel_func.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/tr1/poly_hermite.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/tr1/poly_laguerre.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/tr1/riemann_zeta.tcc \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/../detail/setup.hpp \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/cassert \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/cassert \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/assert.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_assert.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_static_assert.h \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/../detail/../simd/platform.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/cstdint \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/climits \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/limits.h \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/syslimits.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/cstdint \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/climits \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/limits.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/syslimits.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/limits.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/machine/limits.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/arm/limits.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/arm/_limits.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/syslimits.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/cfloat \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/float.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/cfloat \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/float.h \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/../fwd.hpp \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/../detail/qualifier.hpp \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/../detail/setup.hpp \
@@ -257,29 +257,29 @@ external/glm/glm/CMakeFiles/glm.dir/detail/glm.cpp.o: \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/.././ext/../detail/type_vec3.hpp \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/.././ext/../detail/type_vec3.inl \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/.././ext/../detail/compute_vector_decl.hpp \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/functional \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/refwrap.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/std_function.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/functexcept.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/unordered_map \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/unordered_map.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/hashtable.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/hashtable_policy.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/ext/aligned_buffer.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/enable_special_members.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/node_handle.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/vector \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stl_uninitialized.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stl_vector.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/stl_bvector.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/vector.tcc \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/formatfwd.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/array \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/binders.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/funcwrap.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/mofunc_impl.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/cpyfunc_impl.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/bits/funcref_impl.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/functional \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/refwrap.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/std_function.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/functexcept.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/unordered_map \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/unordered_map.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/hashtable.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/hashtable_policy.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/ext/aligned_buffer.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/enable_special_members.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/node_handle.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/vector \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stl_uninitialized.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stl_vector.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/stl_bvector.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/vector.tcc \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/formatfwd.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/array \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/binders.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/funcwrap.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/mofunc_impl.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/cpyfunc_impl.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/bits/funcref_impl.h \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/.././ext/../detail/_vectorize.hpp \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/.././ext/vector_bool3_precision.hpp \
  /Users/gordie/Developer/lib/PIGS/external/glm/glm/detail/../gtx/.././ext/vector_float3.hpp \

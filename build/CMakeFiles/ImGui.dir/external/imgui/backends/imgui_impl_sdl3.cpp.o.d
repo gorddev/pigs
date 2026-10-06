@@ -2,9 +2,9 @@ CMakeFiles/ImGui.dir/external/imgui/backends/imgui_impl_sdl3.cpp.o: \
  /Users/gordie/Developer/lib/PIGS/external/imgui/backends/imgui_impl_sdl3.cpp \
  /Users/gordie/Developer/lib/PIGS/external/imgui/imgui.h \
  /Users/gordie/Developer/lib/PIGS/external/imgui/imconfig.h \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/float.h \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stdarg.h \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stddef.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/float.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stdarg.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stddef.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/string.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_string.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_bounds.h \
@@ -54,7 +54,7 @@ CMakeFiles/ImGui.dir/external/imgui/backends/imgui_impl_sdl3.cpp.o: \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/_types/_rune_t.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/_types/_wchar_t.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/stdio.h \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include-fixed/_stdio.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include-fixed/_stdio.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/_types/_va_list.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/stdio.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_printf.h \
@@ -73,7 +73,7 @@ CMakeFiles/ImGui.dir/external/imgui/backends/imgui_impl_sdl3.cpp.o: \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/ctype.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_ctype.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/runetype.h \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stdint.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stdint.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/stdint.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_types/_uint8_t.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_types/_uint16_t.h \

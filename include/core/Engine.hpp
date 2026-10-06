@@ -9,8 +9,8 @@
 #include <core/callbacks/SDL_ForwardDeclaration.hpp>
 
 #include "Audio.hpp"
-#include "rendering/shaders/ShaderManager.hpp"
-#include "rendering/textures/TextureRegister.hpp"
+#include "core/rendering/shaders/ShaderManager.hpp"
+#include "core/rendering/textures/TextureRegister.hpp"
 #include "toolkit/types/void_ptr.hpp"
 #include "vitals/Exec.hpp"
 
@@ -55,7 +55,7 @@ namespace pg {
         }
         template<typename Func>
         Engine& onCrash(Func loop) {
-            config.callback.quit = loop;
+            config.callback.crash = loop;
             return *this;
         }
 
@@ -70,7 +70,7 @@ namespace pg {
          */
         explicit Engine(int);
 
-        Engine(Engine&& o) noexcept = default;
+        Engine(Engine&& o) noexcept = delete;
         Engine& operator=(Engine&& o) noexcept;
 
         /**

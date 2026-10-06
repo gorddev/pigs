@@ -11,7 +11,7 @@ CMakeFiles/pigs.dir/src/core/Clock.cpp.o: \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/Availability.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/AvailabilityInternal.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/AvailabilityInternalLegacy.h \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stdarg.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stdarg.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/string.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_string.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_bounds.h \
@@ -48,7 +48,7 @@ CMakeFiles/pigs.dir/src/core/Clock.cpp.o: \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/_types/_rune_t.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/_types/_wchar_t.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/stdio.h \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include-fixed/_stdio.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include-fixed/_stdio.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/_types/_va_list.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/sys/stdio.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_printf.h \
@@ -67,7 +67,7 @@ CMakeFiles/pigs.dir/src/core/Clock.cpp.o: \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/ctype.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_ctype.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/runetype.h \
- /opt/homebrew/Cellar/gcc/16.1.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stdint.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/gcc/aarch64-apple-darwin25/16/include/stdint.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/stdint.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_types/_uint8_t.h \
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/_types/_uint16_t.h \
@@ -133,11 +133,11 @@ CMakeFiles/pigs.dir/src/core/Clock.cpp.o: \
  /Users/gordie/Developer/lib/PIGS/external/SDL3/include/SDL3/SDL_version.h \
  /Users/gordie/Developer/lib/PIGS/external/SDL3/include/SDL3/SDL_oldnames.h \
  /Users/gordie/Developer/lib/PIGS/include/toolkit/intdef.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/cstdint \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/aarch64-apple-darwin25/bits/c++config.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/aarch64-apple-darwin25/bits/os_defines.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/aarch64-apple-darwin25/bits/cpu_defines.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/pstl/pstl_config.h \
- /opt/homebrew/Cellar/gcc/16.1.0/include/c++/16/limits \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/cstdint \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/aarch64-apple-darwin25/bits/c++config.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/aarch64-apple-darwin25/bits/os_defines.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/aarch64-apple-darwin25/bits/cpu_defines.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/pstl/pstl_config.h \
+ /opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/limits \
  /Users/gordie/Developer/lib/PIGS/external/glad4/glad/glad.h \
  /Users/gordie/Developer/lib/PIGS/external/glad4/KHR/khrplatform.h
