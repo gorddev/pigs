@@ -1,2 +1,0 @@
-"/opt/homebrew/bin/gcc-ar-16" qc libfoo.a CMakeFiles/foo.dir/foo.cpp.o
-"/opt/homebrew/bin/gcc-ranlib-16" libfoo.a
