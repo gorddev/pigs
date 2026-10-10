@@ -3,7 +3,8 @@ cmake-build-debug
 .idea
 .vscode
 ./build
-.*
 emcmake
 build
 build*
+_*
+.cache
